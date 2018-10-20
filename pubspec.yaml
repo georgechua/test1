@@ -49,6 +49,7 @@ flutter:
    - images/drawerheader.jpg
    - images/loginbg.jpg
    - images/logo.png
+   - images/onlylogo.png
   #  - images/a_dot_ham.jpegR
 
   # An image asset can refer to one or more resolution-specific "variants", see
