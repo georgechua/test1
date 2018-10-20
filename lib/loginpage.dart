@@ -47,11 +47,11 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
              
              children: <Widget>[
               
-              /* new Image(
+              new Image(
                  image: new AssetImage("images/logo.png"),
                  width: 500.0, height: 220.0,
                  fit:BoxFit.fill
-               ), */
+               ), 
            new Container(
              child: new Theme(
                data: new ThemeData(brightness: Brightness.dark,primarySwatch: Colors.blue, inputDecorationTheme: new InputDecorationTheme(
