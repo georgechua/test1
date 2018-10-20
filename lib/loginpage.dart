@@ -36,9 +36,9 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
          fit: StackFit.expand,
          children: <Widget>[
            new Image(
-             image: new AssetImage("images/onlylogo.png"),
+             image: new AssetImage("images/loginbg1.png"),
              fit: BoxFit.cover,
-             color: Colors.black87,
+             color: Colors.black54,
              colorBlendMode: BlendMode.darken,
            
            ),
@@ -57,19 +57,24 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
              padding: const EdgeInsets.only(top:0.0),
              child: new Theme(
                data: new ThemeData(brightness: Brightness.dark,primarySwatch: Colors.blue, inputDecorationTheme: new InputDecorationTheme(
-                 labelStyle: new TextStyle(color: Colors.blue, fontSize: 20.0))),
+                 labelStyle: new TextStyle(color: Colors.white, fontSize: 20.0, fontStyle: FontStyle.italic))),
 
                     child: new Container(
                       //margin: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
-                      padding: const EdgeInsets.fromLTRB(30.0,0.0,0.0,30.0),
+                      padding: const EdgeInsets.fromLTRB(40.0,0.0,40.0,30.0),
                                           child: new Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                  children: <Widget>[
                       new TextFormField(
+                      
                         decoration: (new InputDecoration(
+                          
                           labelText: "Email",
+                          
                         )),
+                      
                         keyboardType: TextInputType.emailAddress,
+                        
                       ),
                       new TextFormField(decoration: (new InputDecoration(
                         labelText: "Password",

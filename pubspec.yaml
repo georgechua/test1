@@ -50,6 +50,7 @@ flutter:
    - images/loginbg.jpg
    - images/logo.png
    - images/onlylogo.png
+   - images/loginbg1.png
   #  - images/a_dot_ham.jpegR
 
   # An image asset can refer to one or more resolution-specific "variants", see
