@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class BankContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return new Scaffold(
+      //home: Scaffold(
         appBar: AppBar(
           title: const Text('BANKING 101'),
         ),
@@ -13,7 +13,7 @@ class BankContent extends StatelessWidget {
               EntryItem(data[index]),
           itemCount: data.length,
         ),
-      ),
+      
     );
   }
 }

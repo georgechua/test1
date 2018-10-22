@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
         //fontFamily: 'Nunito',
         primaryColor: Colors.blue,
         //canvasColor: Colors.blue[900],
+        
       ),
       home: new MyHomePage(title: 'Home'),
       //home: new LoginPage(),
@@ -50,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return new Scaffold(
       appBar: new AppBar(
       title: new Text('Home'),
+      
     ),
       drawer: new Drawer(
         child: ListView(
