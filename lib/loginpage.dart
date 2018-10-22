@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                  fit:BoxFit.fill
                ), */
                
-          new Text("FinEduBot", style: new TextStyle(color: Colors.white,fontSize: 50.0,fontWeight: FontWeight.bold,),
+          new Text("FinEduBot", style: new TextStyle(color: Colors.white,fontSize: 50.0,fontWeight: FontWeight.bold,fontFamily: 'Nunito'),
           ),
            new Container(
              padding: const EdgeInsets.only(top:0.0),

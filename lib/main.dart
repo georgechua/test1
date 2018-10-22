@@ -5,9 +5,14 @@ import './quiz.dart';
 import './result.dart';
 import './logout.dart';
 import './loginpage.dart';
+import './stockcontent.dart';
+import './bankcontent.dart';
+import './investcontent.dart';
+import './economicscontent.dart';
+import './feedback.dart';
+
 
 void main() => runApp(new MyApp());
-
 
 
 class MyApp extends StatelessWidget {
@@ -17,14 +22,13 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'FinEduBot Demo',
       theme: new ThemeData(
-        fontFamily: 'Nunito',
+        //fontFamily: 'Nunito',
         primaryColor: Colors.blue,
-      
-        
         //canvasColor: Colors.blue[900],
       ),
-      //home: new MyHomePage(title: 'Home'),
-      home: new LoginPage(),
+      home: new MyHomePage(title: 'Home'),
+      //home: new LoginPage(),
+      //home: new FeedbackForm(),
     );
   }
 }
@@ -42,13 +46,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
+      
     return new Scaffold(
       appBar: new AppBar(
-        backgroundColor: Colors.black87,
-        title: new Text("Home")
-      ),
-    drawer: new Drawer(
+      title: new Text('Home'),
+    ),
+      drawer: new Drawer(
         child: ListView(
           children: <Widget>[
             new UserAccountsDrawerHeader(
@@ -87,6 +90,17 @@ class _MyHomePageState extends State<MyHomePage> {
              },
            ),
            new ListTile(
+             leading: new Icon(Icons.feedback),
+             contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
+             title: new Text('Feedback'),
+             onTap: () {
+               Navigator.of(context).pop();
+              Navigator.of(context).push(new MaterialPageRoute(
+                builder : (BuildContext context) => new FeedbackForm()
+              ));
+             },
+           ),
+           new ListTile(
              leading: new Icon(Icons.exit_to_app),
              contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
              title: new Text('Log Out'),
@@ -96,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 builder : (BuildContext context) => new Logout()
               ));
              },
-           )
+           ),
           ],
         ),
 
@@ -104,6 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     body: new Stack(
       children: <Widget>[
+        
         new HomeCard()
       ],
     ),
@@ -134,13 +149,13 @@ class HomeCard extends StatelessWidget {
                 
                  color: Colors.blue[300],
                   child: new InkWell(
-                    onTap: () => print("You choose 1"),
+                    onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new StockContent())),
                     splashColor: Colors.greenAccent,
                     child: new Center(
                       
                       child: new Container(
                         
-                        child: new Text("STOCK", style: TextStyle(color: Colors.white, fontStyle: FontStyle.italic,fontWeight: FontWeight.bold, fontSize: 40.0)),
+                        child: new Text("STOCK", style: TextStyle(color: Colors.white,fontFamily: 'Nunito', fontStyle: FontStyle.italic,fontWeight: FontWeight.bold, fontSize: 40.0)),
                       ),
                     ),
                   ),
@@ -150,10 +165,10 @@ class HomeCard extends StatelessWidget {
               child: new Material(
                 color: Colors.blue[500],
                 child: new InkWell(
-                  onTap: () => print("You choose 2"),
+                  onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new BankContent())),
                   child: new Center(
                     child: new Container(
-                      child: new Text("BANKING", style: TextStyle(color: Colors.white, fontStyle: FontStyle.italic,fontWeight: FontWeight.bold, fontSize: 40.0)),
+                      child: new Text("BANKING", style: TextStyle(color: Colors.white,fontFamily: 'Nunito', fontStyle: FontStyle.italic,fontWeight: FontWeight.bold, fontSize: 40.0)),
                     ),
                   ),
                 ),
@@ -163,10 +178,10 @@ class HomeCard extends StatelessWidget {
               child: new Material(
                 color: Colors.blue[700],
                 child: new InkWell(
-                  onTap: () => print("You choose 3"),
+                  onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new EconomicsContent())),
                   child: new Center(
                     child: new Container(
-                      child: new Text("ECONOMICS", style: TextStyle(color: Colors.white, fontStyle: FontStyle.italic,fontWeight: FontWeight.bold, fontSize: 40.0)),
+                      child: new Text("ECONOMICS", style: TextStyle(color: Colors.white,fontFamily: 'Nunito', fontStyle: FontStyle.italic,fontWeight: FontWeight.bold, fontSize: 40.0)),
                     ),
                   ),
                 ),
@@ -176,10 +191,10 @@ class HomeCard extends StatelessWidget {
               child: new Material(
                 color: Colors.blue[900],
                 child: new InkWell(
-                  onTap: () => print("You choose 4"),
+                  onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new InvestmentContent())),
                   child: new Center(
                     child: new Container(
-                        child: new Text("INVESTMENT", style: TextStyle(color: Colors.white, fontStyle: FontStyle.italic,fontWeight: FontWeight.bold, fontSize: 40.0)),
+                        child: new Text("INVESTMENT", style: TextStyle(color: Colors.white,fontFamily: 'Nunito', fontStyle: FontStyle.italic,fontWeight: FontWeight.bold, fontSize: 40.0)),
                     ),
                   ),
                 ),
