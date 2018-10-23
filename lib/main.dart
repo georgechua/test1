@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 //pages
 import './result.dart';
@@ -10,6 +11,8 @@ import './economicscontent.dart';
 import './feedback.dart';
 import './pages/landing.dart';
 import './loginpage.dart';
+import './ui/spinkit.dart';
+import './pages/riskprofile_page.dart';
 
 
 void main() => runApp(new MyApp());
@@ -26,9 +29,10 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.blue,
         //canvasColor: Colors.blue[900],
       ),
-      home: new MyHomePage(title: 'Home'),
+      //home: new MyHomePage(title: 'Home'),
       //home: new LoginPage(),
-      //home: new FeedbackForm(),
+      home: new RiskProfile(),
+    
     );
   }
 }
@@ -50,6 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return new Scaffold(
       appBar: new AppBar(
       title: new Text('Home'),
+      elevation: defaultTargetPlatform == TargetPlatform.android ? 5.0 : 0.0,
+      
       
     ),
       drawer: new Drawer(
@@ -67,10 +73,17 @@ class _MyHomePageState extends State<MyHomePage> {
               currentAccountPicture: new CircleAvatar(
                 backgroundImage: new NetworkImage('http://i.pravatar.cc/300'),
               ),
+              
+            /*  otherAccountsPictures: <Widget>[
+                      new CircleAvatar(
+                        backgroundImage: new NetworkImage('http://i.pravatar.cc/200'),
+                      )
+              ], */
             ),
+            
            new ListTile(
              leading: new Icon(Icons.grade),
-             contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
+             //contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
              title: new Text('Quiz'),
              onTap: () {
                Navigator.of(context).pop();
@@ -100,6 +113,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 builder : (BuildContext context) => new FeedbackForm()
               ));
              },
+           ),
+           new Divider(
+             height: 1.0,
            ),
            new ListTile(
              leading: new Icon(Icons.exit_to_app),

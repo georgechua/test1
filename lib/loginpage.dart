@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                         child: new Text("Login", style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),),
                         onPressed: () => {},
                         splashColor: Colors.lightBlue[900],
-                        ),      
+                    ),      
                  ],
                ),
                     ),

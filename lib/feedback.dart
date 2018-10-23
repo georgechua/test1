@@ -9,10 +9,6 @@ class FeedbackForm extends StatefulWidget {
   _FeedbackFormState createState() => _FeedbackFormState();
 }
 
-
-
-
-
 class _FeedbackFormState extends State<FeedbackForm> {
 
   List<DropdownMenuItem<String>> listDrop = [];
@@ -83,7 +79,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
                           labelText: "Name",
                           //hintText: "Name",
                           labelStyle: TextStyle(fontFamily: 'Nunito',fontSize: 25.0,color: Colors.black54),
-                          contentPadding: EdgeInsets.fromLTRB(20.0,0.0,0.0,20.0),
+                          contentPadding: EdgeInsets.fromLTRB(20.0,30.0,0.0,0.0),
                               border: new OutlineInputBorder(
                                 borderRadius: new BorderRadius.circular(15.0)
                               )
@@ -104,7 +100,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
                     decoration: (new InputDecoration(
                                 labelText: "Email",
                                 labelStyle: TextStyle(fontFamily: 'Nunito',fontSize: 25.0,color: Colors.black54),
-                                contentPadding: EdgeInsets.fromLTRB(20.0,10.0,20.0,10.0),
+                                contentPadding: EdgeInsets.fromLTRB(20.0,30.0,20.0,0.0),
                                       border: new OutlineInputBorder(
                               borderRadius: new BorderRadius.circular(15.0)
                             )
