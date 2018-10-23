@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import './materialbtn.dart';
-import './quiz.dart';
 import './result.dart';
 import './logout.dart';
 

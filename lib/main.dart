@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 //pages
-import './quiz.dart';
 import './result.dart';
 import './logout.dart';
-import './loginpage.dart';
 import './stockcontent.dart';
 import './bankcontent.dart';
 import './investcontent.dart';
 import './economicscontent.dart';
 import './feedback.dart';
+import './pages/landing.dart';
+import './loginpage.dart';
 
 
 void main() => runApp(new MyApp());
@@ -25,7 +25,6 @@ class MyApp extends StatelessWidget {
         //fontFamily: 'Nunito',
         primaryColor: Colors.blue,
         //canvasColor: Colors.blue[900],
-        
       ),
       home: new MyHomePage(title: 'Home'),
       //home: new LoginPage(),
@@ -76,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
              onTap: () {
                Navigator.of(context).pop();
                Navigator.of(context).push(new MaterialPageRoute(
-                 builder: (BuildContext context) => new QuizPage()) 
+                 builder: (BuildContext context) => new Landing()) 
                );
              },
            ),
@@ -109,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
              onTap: () {
                Navigator.of(context).pop();
               Navigator.of(context).push(new MaterialPageRoute(
-                builder : (BuildContext context) => new Logout()
+                builder : (BuildContext context) => new LoginPage()
               ));
              },
            ),
