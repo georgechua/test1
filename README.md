@@ -1,6 +1,6 @@
-# test1
+# FinEduBot
 
-A new Flutter application.
+Mobile Application that focused on financial knowledge learning.
 
 ## Getting Started
 
