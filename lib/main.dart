@@ -29,9 +29,9 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.blue,
         //canvasColor: Colors.blue[900],
       ),
-      //home: new MyHomePage(title: 'Home'),
+      home: new MyHomePage(title: 'Home'),
       //home: new LoginPage(),
-      home: new RiskProfile(),
+      //home: new RiskProfile(),
     
     );
   }
@@ -101,6 +101,17 @@ class _MyHomePageState extends State<MyHomePage> {
                Navigator.of(context).push(new MaterialPageRoute(
                  builder: (BuildContext context) => new ResultPage()
                ));
+             },
+           ),
+           new ListTile(
+             leading: new Icon(Icons.person),
+             contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
+             title: new Text('Risk Profile'),
+             onTap: () {
+               Navigator.of(context).pop();
+              Navigator.of(context).push(new MaterialPageRoute(
+                builder : (BuildContext context) => new RiskProfile()
+              ));
              },
            ),
            new ListTile(

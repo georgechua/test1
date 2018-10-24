@@ -18,13 +18,13 @@ class _RiskProfileState extends State<RiskProfile> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('Risk Profile Assessment'),
-        actions: <Widget>[
+      /*  actions: <Widget>[
           
           new Container(
             padding: EdgeInsets.only(right:10.0),
             child: new IconButton(icon: const Icon(Icons.person), iconSize: 35.0, 
             onPressed: () {}))
-          ],
+          ],  */
         ),
         
           body: new Column(
