@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 //pages
-import './quiz.dart';
 import './result.dart';
 import './logout.dart';
-import './loginpage.dart';
 import './stockcontent.dart';
 import './bankcontent.dart';
 import './investcontent.dart';
 import './economicscontent.dart';
 import './feedback.dart';
+import './pages/landing.dart';
+import './loginpage.dart';
+import './ui/spinkit.dart';
+import './pages/riskprofile_page.dart';
 
 
 void main() => runApp(new MyApp());
@@ -25,11 +28,11 @@ class MyApp extends StatelessWidget {
         //fontFamily: 'Nunito',
         primaryColor: Colors.blue,
         //canvasColor: Colors.blue[900],
-        
       ),
       home: new MyHomePage(title: 'Home'),
       //home: new LoginPage(),
-      //home: new FeedbackForm(),
+      //home: new RiskProfile(),
+    
     );
   }
 }
@@ -51,6 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return new Scaffold(
       appBar: new AppBar(
       title: new Text('Home'),
+      elevation: defaultTargetPlatform == TargetPlatform.android ? 5.0 : 0.0,
+      
       
     ),
       drawer: new Drawer(
@@ -68,15 +73,22 @@ class _MyHomePageState extends State<MyHomePage> {
               currentAccountPicture: new CircleAvatar(
                 backgroundImage: new NetworkImage('http://i.pravatar.cc/300'),
               ),
+              
+            /*  otherAccountsPictures: <Widget>[
+                      new CircleAvatar(
+                        backgroundImage: new NetworkImage('http://i.pravatar.cc/200'),
+                      )
+              ], */
             ),
+            
            new ListTile(
              leading: new Icon(Icons.grade),
-             contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
+             //contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
              title: new Text('Quiz'),
              onTap: () {
                Navigator.of(context).pop();
                Navigator.of(context).push(new MaterialPageRoute(
-                 builder: (BuildContext context) => new QuizPage()) 
+                 builder: (BuildContext context) => new Landing()) 
                );
              },
            ),
@@ -92,6 +104,17 @@ class _MyHomePageState extends State<MyHomePage> {
              },
            ),
            new ListTile(
+             leading: new Icon(Icons.person),
+             contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
+             title: new Text('Risk Profile'),
+             onTap: () {
+               Navigator.of(context).pop();
+              Navigator.of(context).push(new MaterialPageRoute(
+                builder : (BuildContext context) => new RiskProfile()
+              ));
+             },
+           ),
+           new ListTile(
              leading: new Icon(Icons.feedback),
              contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
              title: new Text('Feedback'),
@@ -102,6 +125,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ));
              },
            ),
+           new Divider(
+             height: 1.0,
+           ),
            new ListTile(
              leading: new Icon(Icons.exit_to_app),
              contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
@@ -109,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
              onTap: () {
                Navigator.of(context).pop();
               Navigator.of(context).push(new MaterialPageRoute(
-                builder : (BuildContext context) => new Logout()
+                builder : (BuildContext context) => new LoginPage()
               ));
              },
            ),
