@@ -30,6 +30,7 @@ flutter_icons:
   image_path: "icon/icon.png"
   adnroid: true
   ios: true
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
