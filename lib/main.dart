@@ -29,8 +29,8 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.blue,
         //canvasColor: Colors.blue[900],
       ),
-      home: new MyHomePage(title: 'Home'),
-      //home: new LoginPage(),
+      //home: new MyHomePage(title: 'Home'),
+      home: new LoginPage(),
       //home: new RiskProfile(),
     
     );

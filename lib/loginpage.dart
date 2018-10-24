@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './main.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -86,12 +87,14 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                         padding: const EdgeInsets.only(top:40.0),
                       ),
                       new MaterialButton(
+                        elevation: 5.0,
                         height: 40.0,
                         minWidth: 100.0,
                         color: Colors.blue,
                         textColor: Colors.white,
                         child: new Text("Login", style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),),
-                        onPressed: () => {},
+                        
+                        onPressed: () =>  Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new MyHomePage())),
                         splashColor: Colors.lightBlue[900],
                     ),      
                  ],
