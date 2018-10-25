@@ -1,39 +1,80 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 //Pages
 import './ui/googlebutton.dart';
 import './ui/google_btn_main.dart';
 import './main.dart';
+import './materialbtn.dart';
+import 'auth.dart';
 
 
 class LoginPage extends StatefulWidget {
+  LoginPage({this.auth,this.onSignedIn});
+  final BaseAuth auth;
+  final VoidCallback onSignedIn;
+
   @override
   State createState() => _LoginPageState();
 }
 
+enum FormType { 
+  login,
+  register
+}
+
 class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixin {
-  
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn googleSignIn = new GoogleSignIn();
+ 
+  //Form validate var
+  final formKey = new GlobalKey<FormState>();
+  String _email;
+  String _password;
+  FormType _formType = FormType.login;
 
-  Future<FirebaseUser> _signIn() async {
-    GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
-    GoogleSignInAuthentication gSA = await googleSignInAccount.authentication;
-   
-    FirebaseUser user = await _auth.signInWithGoogle(
-      idToken: gSA.idToken, accessToken: gSA.accessToken);
-
-      print("User Name : ${user.displayName}");
-      return user;
+  bool validateAndSave(){
+    final form = formKey.currentState;
+    if (form.validate()) {
+      form.save();
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
-  void _signOut(){
-    googleSignIn.signOut();
-    print("User Signed Out");
+  void validateAndSubmit() async{
+      if(validateAndSave()){
+          try {
+            if(_formType == FormType.login) {
+              String userId = await widget.auth.signInWithEmailAndPassword(_email, _password); 
+              print('Signed In : $userId');
+            }else {
+              String userId = await widget.auth.createUserWithEmailAndPassword(_email, _password);
+              print('Registered User : $userId');
+            }
+            widget.onSignedIn();
+          }
+          catch (e) {
+            print('Error: $e');
+          }
+      }
   }
 
+  void moveToRegister() {
+    formKey.currentState.reset();
+    setState(() {
+          _formType = FormType.register;
+        });
+  }
+
+void moveToLogin(){
+  formKey.currentState.reset();
+  setState(() {
+      _formType = FormType.login;
+    });
+}
+
+  //Animation Controller properties
   AnimationController _iconAnimationController;
   Animation<double> _iconAnimation;
 
@@ -61,6 +102,7 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
        backgroundColor: Colors.blueAccent,
        body: new Stack(
          fit: StackFit.expand,
+         
          children: <Widget>[
            new Image(
              image: new AssetImage("images/loginbg1.png"),
@@ -71,60 +113,117 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
            ),
            new Column(
              mainAxisAlignment: MainAxisAlignment.center,
-             children: <Widget>[
-              /* new Image(
-                 image: new AssetImage("images/logo.png"),
-                 width: 500.0, height: 220.0,
-                 fit:BoxFit.fill
-               ), */
-               
-          new Text("FinEduBot", style: new TextStyle(color: Colors.white,fontSize: 50.0,fontWeight: FontWeight.bold,fontFamily: 'Nunito'),
-          ),
-           new Container(
-             padding: const EdgeInsets.only(top:0.0),
-             child: new Theme(
-               data: new ThemeData(brightness: Brightness.dark,primarySwatch: Colors.blue, inputDecorationTheme: new InputDecorationTheme(
-                 labelStyle: new TextStyle(color: Colors.white, fontSize: 20.0, fontStyle: FontStyle.italic))),
+             children: <Widget>[    
+            new Text("FinEduBot", style: new TextStyle(color: Colors.white,fontSize: 50.0,fontWeight: FontWeight.bold,fontFamily: 'Nunito'),
+            ),
+            new Container(
+                padding: const EdgeInsets.all(20.0),
+                child: new Theme(
+                  data: new ThemeData(brightness: Brightness.dark,primarySwatch: Colors.blue, inputDecorationTheme: new InputDecorationTheme(
+                  labelStyle: new TextStyle(color: Colors.white, fontSize: 20.0, fontStyle: FontStyle.italic))),
 
-                    child: new Container(
-                      //margin: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
-                      padding: const EdgeInsets.fromLTRB(40.0,0.0,40.0,30.0),
-                                          child: new Column(
+                    child: new Form(
+                        key:formKey,         
+                        child: new Column(                    
                         crossAxisAlignment: CrossAxisAlignment.center,
-                 children: <Widget>[
-                      new TextFormField(
-                      
-                        decoration: (new InputDecoration(
-                          
-                          labelText: "Email",
-                          
-                        )),
-                      
-                        keyboardType: TextInputType.emailAddress,
-                        
-                      ),
-                      new TextFormField(decoration: (new InputDecoration(
-                        labelText: "Password",
-                      )),
-                      keyboardType: TextInputType.text,
-                      obscureText: true,
-                      ),
-                      new Padding(
-                        padding: const EdgeInsets.only(top:40.0),
-                      ),
-                      new GoogleBtn()
-                 ],
-               ),
-                    ),
+                         children: buildInputs() + buildSubmitButtons(),
+              ),
              ),
+            ),
            )
-            ],
-          ),
+          ],
+         ),
         ],
       ),
-      
     );
   }
+
+
+  List<Widget> buildInputs(){
+        return [
+          new TextFormField(
+            decoration: (new InputDecoration(
+            labelText: "Email",
+            )),
+            validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
+            onSaved: (value) => _email = value,
+            keyboardType: TextInputType.emailAddress,
+          ),
+          new TextFormField(
+            decoration: (new InputDecoration(
+            labelText: "Password",
+            )),
+            keyboardType: TextInputType.text,
+            obscureText: true,
+            validator: (value) => value.isEmpty ? 'Password can\'t be empty' : null,
+            onSaved: (value) => _password = value,
+          ),
+          new Padding(
+                        padding: const EdgeInsets.only(top:30.0)),
+           
+     ];
+  }
+
+  List<Widget> buildSubmitButtons() {
+      if (_formType == FormType.login) {    
+      return [
+          new MaterialButton(
+                        elevation: 5.0,
+                        height: 40.0,
+                        minWidth: 500.0,
+                        color: Colors.blue,
+                        textColor: Colors.white,
+                        child: new Text("Sign In", style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),),
+                        
+                        onPressed: validateAndSubmit,
+                      
+                        splashColor: Colors.lightBlue[900],
+                    ),
+                    new Padding(
+                        padding: const EdgeInsets.only(bottom:15.0),
+                  ),
+                    new GoogleBtn(),
+                    new FlatButton(
+                      child: new Text('Create an account', 
+                        style: new TextStyle(
+                          fontSize: 17.0,
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.normal,
+                          color: Colors.white
+                          ), 
+                        ),
+                        onPressed: moveToRegister,
+                  ),
+                ];
+     } else {
+       return [
+         new MaterialButton(
+                        elevation: 5.0,
+                        height: 40.0,
+                        minWidth: 500.0,
+                        color: Colors.blue,
+                        textColor: Colors.white,
+                        child: new Text("Create an account", style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),),
+                        onPressed: validateAndSubmit,
+                        splashColor: Colors.lightBlue[900],
+                    ),
+                     new Padding(
+                        padding: const EdgeInsets.only(bottom:15.0),
+                  ),
+        new MaterialButton(
+                        elevation: 5.0,
+                        height: 40.0,
+                        minWidth: 500.0,
+                        color: Colors.green,
+                        textColor: Colors.white,
+                        child: new Text("Have an account? Login", style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),),
+                        onPressed: moveToLogin,
+                        splashColor: Colors.lightBlue[900],
+                    ),            
+       ];
+     }
+    }
+
 }
 
 /*  class LogoImage extends StatelessWidget {

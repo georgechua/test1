@@ -5,8 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 
 //pages
+import './pages/riskprofile_page.dart';
 import './result.dart';
-import './logout.dart';
 import './stockcontent.dart';
 import './bankcontent.dart';
 import './investcontent.dart';
@@ -15,7 +15,9 @@ import './feedback.dart';
 import './pages/landing.dart';
 import './loginpage.dart';
 import './ui/spinkit.dart';
-import './pages/riskprofile_page.dart';
+import 'auth.dart';
+import './root_page.dart';
+import 'logout_alert.dart';
 
 
 void main() => runApp(new MyApp());
@@ -32,9 +34,9 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.blue,
         //canvasColor: Colors.blue[900],
       ),
-      //home: new MyHomePage(title: 'Home'),
-      home: new LoginPage(),
-      //home: new RiskProfile(),
+      home: new MyHomePage(title: 'Home'),
+     // home: new RootPage(auth: new Auth())
+     //home: new LogOutALert()
     
     );
   }
@@ -47,6 +49,11 @@ class MyHomePage extends StatefulWidget {
 
   @override
   _MyHomePageState createState() => new _MyHomePageState();
+}
+
+enum DialogAction{
+  yes,
+  no
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -69,6 +76,50 @@ class _MyHomePageState extends State<MyHomePage> {
     googleSignIn.signOut();
     print("User Signed Out");
   }
+
+void _showAlert() {
+  AlertDialog dialog = new AlertDialog(
+     content: new Text("Confirm LogOut?", 
+     style: new TextStyle(
+      fontSize:20.0,
+      fontFamily: 'Nunito',
+      //fontWeight: FontWeight.bold,
+      ),
+    ),
+    actions: <Widget>[
+        new FlatButton(
+          onPressed: null,
+          child: Text('YES', 
+            style: new TextStyle(
+            fontSize: 18.0,
+            fontFamily: 'Nunito',
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            ),
+            )
+          ),
+        new FlatButton(
+          onPressed: _confirmNO,
+          child: Text('NO', 
+            style: new TextStyle(
+              fontSize: 18.0,
+              fontFamily: 'Nunito',
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              ),
+              )
+          )
+    ],
+  );
+
+  showDialog(context: context, child: dialog);
+
+}
+
+void _confirmNO() {
+  Navigator.pop(context);
+  Navigator.pop(context);
+}
 
 
   @override
@@ -155,7 +206,7 @@ class _MyHomePageState extends State<MyHomePage> {
              leading: new Icon(Icons.exit_to_app),
              contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
              title: new Text('Log Out'),
-             onTap: () => _signOut(),
+             onTap: () {_showAlert();}
            ),
           ],
         ),

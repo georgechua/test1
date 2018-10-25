@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import './materialbtn.dart';
-import './result.dart';
-import './logout.dart';
-
 
 class FeedbackForm extends StatefulWidget {
   @override

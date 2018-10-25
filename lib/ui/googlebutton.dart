@@ -8,17 +8,19 @@ Widget button(title, uri, [ color = const Color.fromRGBO(68, 68, 76, .8) ]) {
         
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-      
-          Image.asset(
-            uri,
-            width: 25.0,
-          ),
-          new Padding(padding: EdgeInsets.only(right:10.0)),
+
+            new Image.asset(
+              uri,
+              width: 25.0,
+            ),
+
+          new Padding(padding: EdgeInsets.only(right:5.0)),
             new Text(
             "Sign in with $title",
             style:  TextStyle(
-              fontFamily: 'Roboto',
-              fontSize: 13.0,
+              fontFamily: 'Nunitor',
+              fontWeight: FontWeight.bold,
+              fontSize: 14.0,
               color: color,
             ),
           ),

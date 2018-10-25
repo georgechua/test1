@@ -50,14 +50,9 @@ class QuizPageState extends State <QuizPage>{
       children: <Widget>[
         new Column( 
         children: [
-             
-            
                     new AnswerButton(true, () => handleAnswer(true)),
                     new QuestionText(questionText, questionNumber),
-                    new AnswerButton(false, () => handleAnswer(false)),
-                    
-                    
-              
+                    new AnswerButton(false, () => handleAnswer(false)),     
   ],
 ),
 
