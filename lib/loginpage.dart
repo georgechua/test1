@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+//Pages
+import './ui/googlebutton.dart';
+import './ui/google_btn_main.dart';
 import './main.dart';
+
 
 class LoginPage extends StatefulWidget {
   @override
@@ -8,6 +15,25 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixin {
   
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn googleSignIn = new GoogleSignIn();
+
+  Future<FirebaseUser> _signIn() async {
+    GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
+    GoogleSignInAuthentication gSA = await googleSignInAccount.authentication;
+   
+    FirebaseUser user = await _auth.signInWithGoogle(
+      idToken: gSA.idToken, accessToken: gSA.accessToken);
+
+      print("User Name : ${user.displayName}");
+      return user;
+  }
+
+  void _signOut(){
+    googleSignIn.signOut();
+    print("User Signed Out");
+  }
+
   AnimationController _iconAnimationController;
   Animation<double> _iconAnimation;
 
@@ -86,17 +112,7 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                       new Padding(
                         padding: const EdgeInsets.only(top:40.0),
                       ),
-                      new MaterialButton(
-                        elevation: 5.0,
-                        height: 40.0,
-                        minWidth: 100.0,
-                        color: Colors.blue,
-                        textColor: Colors.white,
-                        child: new Text("Login", style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),),
-                        
-                        onPressed: () =>  Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new MyHomePage())),
-                        splashColor: Colors.lightBlue[900],
-                    ),      
+                      new GoogleBtn()
                  ],
                ),
                     ),

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1036138515710",
+    "firebase_url": "https://finedubot-cbc1c.firebaseio.com",
+    "project_id": "finedubot-cbc1c",
+    "storage_bucket": "finedubot-cbc1c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036138515710:android:3b5a2f7f8c566274",
+        "android_client_info": {
+          "package_name": "com.finedubot.test1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1036138515710-dcrsdfc66f9cjsc0dape0eemkkc0qsoj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.finedubot.test1",
+            "certificate_hash": "9076c8ac7c8b8bed11eaac7aac09317005e5b4d8"
+          }
+        },
+        {
+          "client_id": "1036138515710-slbs44k5c47ai001fq0pi64l8juri0fa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChcq7G0ln878KyzC5YwRNXEFhCpR6KA8o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1036138515710-slbs44k5c47ai001fq0pi64l8juri0fa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

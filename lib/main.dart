@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 //pages
 import './result.dart';
@@ -47,6 +50,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn googleSignIn = new GoogleSignIn();
+
+  Future<FirebaseUser> _signIn() async {
+    GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
+    GoogleSignInAuthentication gSA = await googleSignInAccount.authentication;
+   
+    FirebaseUser user = await _auth.signInWithGoogle(
+      idToken: gSA.idToken, accessToken: gSA.accessToken);
+
+      print("User Name : ${user.displayName}");
+      return user;
+  }
+
+ void _signOut(){
+    googleSignIn.signOut();
+    print("User Signed Out");
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -132,12 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
              leading: new Icon(Icons.exit_to_app),
              contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
              title: new Text('Log Out'),
-             onTap: () {
-               Navigator.of(context).pop();
-              Navigator.of(context).push(new MaterialPageRoute(
-                builder : (BuildContext context) => new LoginPage()
-              ));
-             },
+             onTap: () => _signOut(),
            ),
           ],
         ),
