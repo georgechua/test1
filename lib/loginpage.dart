@@ -182,7 +182,7 @@ void moveToLogin(){
                     new Padding(
                         padding: const EdgeInsets.only(bottom:15.0),
                   ),
-                    new GoogleBtn(),
+                   // new GoogleBtn(),
                     new FlatButton(
                       child: new Text('Create an account', 
                         style: new TextStyle(

@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import './googlebutton.dart';
-import '../main.dart';
+import '../pages/home_page.dart';
 
 class GoogleBtn extends StatelessWidget {
+  GoogleBtn({this.onSignedOut});
+  final VoidCallback onSignedOut;
 
 //Google SignIn Firebase auth
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -17,20 +19,13 @@ class GoogleBtn extends StatelessWidget {
    
     FirebaseUser user = await _auth.signInWithGoogle(
       idToken: gSA.idToken, accessToken: gSA.accessToken);
-
       print("User Name : ${user.displayName}");
       return user;
-  }
-  // Sign Out
-  void _signOut(){
-    googleSignIn.signOut();
-    print("User Signed Out");
   }
 
   @override
   Widget build(BuildContext context) {
 
-      
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -46,3 +41,4 @@ class GoogleBtn extends StatelessWidget {
         );
   }
 }
+

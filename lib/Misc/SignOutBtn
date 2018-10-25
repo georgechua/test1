@@ -1,0 +1,12 @@
+ new MaterialButton(
+                        elevation: 5.0,
+                        height: 40.0,
+                        minWidth: 100.0,
+                        color: Colors.red,
+                        textColor: Colors.white,
+                        child: new Text("Sign Out", style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),),
+                        
+                        onPressed: () => _signOut(),
+                      
+                        splashColor: Colors.lightBlue[900],
+                    ),
