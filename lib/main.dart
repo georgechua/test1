@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'FinEduBot Demo',
       theme: new ThemeData(
         //fontFamily: 'Nunito',

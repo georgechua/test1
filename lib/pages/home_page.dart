@@ -13,6 +13,7 @@ import '../feedback.dart';
 import '../pages/landing.dart';
 import '../auth.dart';
 import './logout_page.dart';
+import '../loancalculator.dart';
 
 
 class MyHomePage extends StatelessWidget {
@@ -40,6 +41,7 @@ class MyHomePage extends StatelessWidget {
     return new Scaffold(
       appBar: new AppBar(
       title: new Text('Home'),
+      centerTitle: true,
       elevation: defaultTargetPlatform == TargetPlatform.android ? 5.0 : 0.0,
       actions: <Widget>[
         new FlatButton(
@@ -62,7 +64,7 @@ class MyHomePage extends StatelessWidget {
                   fit: BoxFit.fill
                 )
               ),
-              accountName: new Text('$auth.currentUser()'),
+              accountName: new Text(''),
               accountEmail: new Text(''),
               /* currentAccountPicture: new CircleAvatar(
                 backgroundImage: new NetworkImage('http://i.pravatar.cc/300'
@@ -106,6 +108,17 @@ class MyHomePage extends StatelessWidget {
                Navigator.of(context).pop();
               Navigator.of(context).push(new MaterialPageRoute(
                 builder : (BuildContext context) => new RiskProfile()
+              ));
+             },
+           ),
+           new ListTile(
+             leading: new Icon(Icons.apps),
+             contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
+             title: new Text('Loan Calculator'),
+             onTap: () {
+               Navigator.of(context).pop();
+              Navigator.of(context).push(new MaterialPageRoute(
+                builder : (BuildContext context) => new Calc()
               ));
              },
            ),

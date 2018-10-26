@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import './materialbtn.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';  
+import 'dart:async';	
 
 class FeedbackForm extends StatefulWidget {
   @override
@@ -7,6 +8,22 @@ class FeedbackForm extends StatefulWidget {
 }
 
 class _FeedbackFormState extends State<FeedbackForm> {
+  StreamSubscription<DocumentSnapshot> subscription;
+  final DocumentReference documentReference = Firestore.instance.document('MyData/Feedback');
+  String myText = null;
+
+  
+  void _add() {
+      Map<String, String> data = <String, String> {
+          "name" : "George",
+          "desc" : "FinEduBot" 
+     };
+
+     documentReference.setData(data).whenComplete((){
+       print("Feedback Added");
+     }).catchError((e) => print(e));
+  }
+
 
   List<DropdownMenuItem<String>> listDrop = [];
   String selected = null;
@@ -134,7 +151,15 @@ class _FeedbackFormState extends State<FeedbackForm> {
 
                         
                      ),
-                    new SendButton(),
+                    new MaterialButton(
+                        height: 40.0,
+                        minWidth: 100.0,
+                        color: Colors.blue,
+                        textColor: Colors.white,
+                        child: new Text("Send", style: new TextStyle(fontFamily: 'Nunito', fontSize: 17.0),),
+                        onPressed: _add,
+                        splashColor: Colors.lightBlue[900],
+                    )
             ],
 
          ),

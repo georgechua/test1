@@ -1,0 +1,6 @@
+onPressed: () {
+
+               Navigator.of(context).push(new MaterialPageRoute(
+                 builder: (BuildContext context) => new LogOut()) 
+               );
+             },

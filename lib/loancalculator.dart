@@ -10,6 +10,8 @@ class CalcState extends State<Calc> {
 
   final TextEditingController t1 = new TextEditingController(text: "0");
   final TextEditingController t2 = new TextEditingController(text: "0");
+  final TextEditingController t3 = new TextEditingController(text: "0");
+  final TextEditingController t4 = new TextEditingController(text: "0");
 
   void doAddition() {
     setState(() {
