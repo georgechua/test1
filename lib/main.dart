@@ -34,8 +34,8 @@ class MyApp extends StatelessWidget {
         //canvasColor: Colors.blue[900],
       ),
      
-     //home: new RootPage(auth: new Auth()),
-     home: new Calc(),
+     home: new RootPage(auth: new Auth()),
+     //home: new Calc(),
      //home: new LogOut()
     );
   }
