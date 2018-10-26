@@ -1,0 +1,50 @@
+//Declare between abstract and clas
+enum DialogAction{
+  yes,
+  no
+}
+
+//Pop context if press No
+void _confirmNO() {
+  Navigator.pop(context);
+} 
+
+//Show Alert Dialog properties void
+void _showAlert() {
+  AlertDialog dialog = new AlertDialog(
+     content: new Text("Confirm Sign Out?", 
+     style: new TextStyle(
+      fontSize:20.0,
+      fontFamily: 'Nunito',
+      //fontWeight: FontWeight.bold,
+      ),
+    ),
+    actions: <Widget>[
+        new FlatButton(
+          onPressed: _signOut,
+          child: Text('YES', 
+            style: new TextStyle(
+            fontSize: 18.0,
+            fontFamily: 'Nunito',
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            ),
+            )
+          ),
+        new FlatButton(
+          onPressed: _confirmNO,
+          child: Text('NO', 
+            style: new TextStyle(
+              fontSize: 18.0,
+              fontFamily: 'Nunito',
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              ),
+              )
+          )
+    ],
+  );
+
+  showDialog(context: context, child: dialog);
+
+}

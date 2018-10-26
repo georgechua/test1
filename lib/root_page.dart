@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './loginpage.dart';
 import 'auth.dart';
 import './pages/home_page.dart';
+import './pages/logout_page.dart';
 
 
 class RootPage extends StatefulWidget {
@@ -57,6 +58,7 @@ class _RootPageState extends State<RootPage> {
           auth: widget.auth,
           onSignedOut: _signedOut,
         );
+        
     }
   }
 }

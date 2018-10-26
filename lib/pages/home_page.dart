@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'dart:async';
 
 //pages
 import './riskprofile_page.dart';
@@ -14,71 +12,26 @@ import '../economicscontent.dart';
 import '../feedback.dart';
 import '../pages/landing.dart';
 import '../auth.dart';
-
-enum DialogAction{
-  yes,
-  no
-}
+import './logout_page.dart';
 
 
 class MyHomePage extends StatelessWidget {
   //MyHomePage({Key key, this.title}) : super(key: key);
   //final String title;
+
   MyHomePage({this.auth, this.onSignedOut});
   final BaseAuth auth;
   final VoidCallback onSignedOut;
-  
-void _signOut() async{
+
+ void _signOut() async{
     try{
         await auth.signOut();
         onSignedOut();
     }catch(e){
-
+        print(e);
     }
 }
-/* void _showAlert() {
-  AlertDialog dialog = new AlertDialog(
-     content: new Text("Confirm LogOut?", 
-     style: new TextStyle(
-      fontSize:20.0,
-      fontFamily: 'Nunito',
-      //fontWeight: FontWeight.bold,
-      ),
-    ),
-    actions: <Widget>[
-        new FlatButton(
-          onPressed: null,
-          child: Text('YES', 
-            style: new TextStyle(
-            fontSize: 18.0,
-            fontFamily: 'Nunito',
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-            ),
-            )
-          ),
-        new FlatButton(
-          //onPressed: _confirmNO,
-          child: Text('NO', 
-            style: new TextStyle(
-              fontSize: 18.0,
-              fontFamily: 'Nunito',
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-              ),
-              )
-          )
-    ],
-  );
 
-  //showDialog(context: context, child: dialog);
-
-} */
-
-/* void _confirmNO() {
-  Navigator.pop(context);
-  Navigator.pop(context);
-} */
 
 
   @override
@@ -93,6 +46,7 @@ void _signOut() async{
           child: new Icon(Icons.exit_to_app,color: Colors.white,size: 30.0,),
           padding: EdgeInsets.only(left:30.0),
           onPressed: _signOut,
+          
         ),
        
       ],
@@ -108,7 +62,7 @@ void _signOut() async{
                   fit: BoxFit.fill
                 )
               ),
-              accountName: new Text(''),
+              accountName: new Text('$auth.currentUser()'),
               accountEmail: new Text(''),
               /* currentAccountPicture: new CircleAvatar(
                 backgroundImage: new NetworkImage('http://i.pravatar.cc/300'
