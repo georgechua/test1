@@ -1,27 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';  
-import 'dart:async';	
+import 'dart:async';
+
 
 class FeedbackForm extends StatefulWidget {
   @override
   _FeedbackFormState createState() => _FeedbackFormState();
 }
 
+enum DialogAction{
+  yes,
+  no
+}
+
 class _FeedbackFormState extends State<FeedbackForm> {
   StreamSubscription<DocumentSnapshot> subscription;
-  final DocumentReference documentReference = Firestore.instance.document('MyData/Feedback');
-  String myText = null;
-
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final commentsController = TextEditingController();
   
-  void _add() {
-      Map<String, String> data = <String, String> {
-          "name" : "George",
-          "desc" : "FinEduBot" 
-     };
+  
+  void _addData() {
+      Firestore.instance.runTransaction((Transaction transaction) async {
+        CollectionReference reference = Firestore.instance.collection('feedback');
+        await reference.add ({
+            "enquiry_type": selected,
+            "name": nameController.text,
+            "email": emailController.text,
+            "comments": commentsController.text,
 
-     documentReference.setData(data).whenComplete((){
-       print("Feedback Added");
-     }).catchError((e) => print(e));
+         });
+      }) ;
+      Navigator.pop(context);
+  }
+
+  void dispose() {
+    // Clean up the controller when the Widget is disposed
+    nameController.dispose();
+    emailController.dispose();
+    commentsController.dispose();
+    super.dispose();
   }
 
 
@@ -47,6 +65,8 @@ class _FeedbackFormState extends State<FeedbackForm> {
         value: 'others_feedback',
     ));
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +106,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
                         children: <Widget>[
 
                           new TextFormField(
-                          
+                            controller: nameController,
                             autofocus: false,
                         decoration: (new InputDecoration(
                           //counterText: "10",
@@ -110,6 +130,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
                 
                           children: <Widget>[
                             new TextFormField(
+                              controller: emailController,
                               autofocus: false,
                     decoration: (new InputDecoration(
                                 labelText: "Email",
@@ -132,6 +153,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
                           children: <Widget>[
                            
                             new TextField(
+                              controller: commentsController,
                               autofocus: false,
                     decoration: (new InputDecoration(
                                 labelText: "Comments",
@@ -157,9 +179,10 @@ class _FeedbackFormState extends State<FeedbackForm> {
                         color: Colors.blue,
                         textColor: Colors.white,
                         child: new Text("Send", style: new TextStyle(fontFamily: 'Nunito', fontSize: 17.0),),
-                        onPressed: _add,
+                        onPressed: _addData,
                         splashColor: Colors.lightBlue[900],
                     )
+                   
             ],
 
          ),
