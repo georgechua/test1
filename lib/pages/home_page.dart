@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 //pages
 import './riskprofile_page.dart';
@@ -33,7 +34,7 @@ class MyHomePage extends StatelessWidget {
     }
 }
 
-
+String getEmail = null;
 
   @override
   Widget build(BuildContext context) {
@@ -50,13 +51,25 @@ class MyHomePage extends StatelessWidget {
           onPressed: _signOut,
           
         ),
-       
+         
       ],
       
     ),
       drawer: new Drawer(
         child: ListView(
           children: <Widget>[
+            new FutureBuilder<FirebaseUser>(
+      future: FirebaseAuth.instance.currentUser(),
+      builder: (BuildContext context, AsyncSnapshot<FirebaseUser> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          
+          getEmail = (snapshot.data.email);
+          return new Container();
+        }
+        
+      },
+    ),
+       
               new UserAccountsDrawerHeader(
               decoration: new BoxDecoration(
                 image: DecorationImage(
@@ -65,11 +78,11 @@ class MyHomePage extends StatelessWidget {
                 )
               ),
               accountName: new Text(''),
-              accountEmail: new Text(''),
-              /* currentAccountPicture: new CircleAvatar(
+              accountEmail: new Text('$getEmail'),
+              currentAccountPicture: new CircleAvatar(
                 backgroundImage: new NetworkImage('http://i.pravatar.cc/300'
                 ), 
-              ), */
+              ),
               
           /*   otherAccountsPictures: <Widget>[
                       new CircleAvatar(
