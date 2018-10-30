@@ -24,6 +24,7 @@ class QuizPageState extends State <QuizPage>{
   int questionNumber;
   bool isCorrect;
   bool overlayShouldBeVisible = false;
+  int resultCount = 0;
 
   @override
   void initState(){
@@ -38,9 +39,14 @@ class QuizPageState extends State <QuizPage>{
   void handleAnswer(bool answer) {
     isCorrect = (currentQuestion.answer == answer);
     quiz.answer(isCorrect);
-    this.setState(() {
+       
+      this.setState(() {
       overlayShouldBeVisible = true;
+     
     });
+  
+   
+   
   }
 
   @override
@@ -60,6 +66,7 @@ class QuizPageState extends State <QuizPage>{
           isCorrect,
           ()  {
             if (quiz.length == questionNumber) {
+              
               Navigator.of(context).pushAndRemoveUntil(new MaterialPageRoute(builder: (BuildContext context) => new ScorePage(quiz.score, quiz.length)), (Route route) => route == null);
               return;
             }
@@ -68,6 +75,7 @@ class QuizPageState extends State <QuizPage>{
               overlayShouldBeVisible = false;
               questionText = currentQuestion.question;
               questionNumber = quiz.questionNumber;
+              
             });
           }
         ) : new Container()

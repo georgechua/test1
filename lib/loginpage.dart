@@ -10,9 +10,12 @@ import 'auth.dart';
 
 
 class LoginPage extends StatefulWidget {
+
+
   LoginPage({this.auth,this.onSignedIn});
   final BaseAuth auth;
   final VoidCallback onSignedIn;
+
 
   @override
   State createState() => _LoginPageState();
@@ -95,6 +98,7 @@ void moveToLogin(){
      _iconAnimationController.forward();
   }
   
+   final emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -142,6 +146,7 @@ void moveToLogin(){
   List<Widget> buildInputs(){
         return [
           new TextFormField(
+            controller: emailController,
             decoration: (new InputDecoration(
             labelText: "Email",
             )),
