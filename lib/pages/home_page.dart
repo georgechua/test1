@@ -77,12 +77,12 @@ String getEmail = null;
                   fit: BoxFit.fill
                 )
               ),
-              accountName: new Text(''),
+              /* accountName: new Text(''),
               accountEmail: new Text('$getEmail'),
               currentAccountPicture: new CircleAvatar(
                 backgroundImage: new NetworkImage('http://i.pravatar.cc/300'
                 ), 
-              ),
+              ), */
               
           /*   otherAccountsPictures: <Widget>[
                       new CircleAvatar(

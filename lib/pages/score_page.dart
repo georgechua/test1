@@ -15,23 +15,18 @@ class ScorePage extends StatefulWidget{
   State createState() => _ScorePageState();
 }
 
-
-
 class _ScorePageState extends State <ScorePage>{
   //Adding Result to Firebase
   void _addResult() {
     var docRef = Firestore.instance.collection('QuizResult');
    
-    
     Firestore.instance.runTransaction((Transaction transaction) async {
         CollectionReference reference = docRef;
         await reference.add ({
             "total_question": widget.totalQuestion,
             "quiz_result": widget.score,
             "user_email": userEmail,
-           "dateTime": DateTime.now().toString(),
-            
-          
+            "dateTime": DateTime.now().toUtc(),
          });       
       }) ;
        this.setState(() {
@@ -62,8 +57,6 @@ class _ScorePageState extends State <ScorePage>{
       future: FirebaseAuth.instance.currentUser(),
       builder: (BuildContext context, AsyncSnapshot<FirebaseUser> snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          
-         
           userEmail = (snapshot.data.email);
           return new Container();
         }

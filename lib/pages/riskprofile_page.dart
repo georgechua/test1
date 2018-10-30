@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../materialbtn.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class RiskProfile extends StatefulWidget {
   @override
@@ -26,7 +27,6 @@ class _RiskProfileState extends State<RiskProfile> {
             onPressed: () {}))
           ],  */
         ),
-        
           body: new Column(
             children: <Widget> [
               new Padding(padding: EdgeInsets.all(10.0),),
@@ -67,6 +67,7 @@ class _RiskProfileState extends State<RiskProfile> {
                     onChanged: (bool resp){
                       setState(() {
                           sel = resp;
+                          
                                         });
                     },
                     value: sel,
@@ -82,7 +83,15 @@ class _RiskProfileState extends State<RiskProfile> {
              )
             ],
           ),
-            new RiskProfileButton()
+            new MaterialButton(
+                        height: 40.0,
+                        minWidth: 100.0,
+                        color: Colors.blue,
+                        textColor: Colors.white,
+                        child: new Text("Submit", style: new TextStyle(fontFamily: 'Nunito', fontSize: 17.0),),
+                        onPressed: () => {},
+                        splashColor: Colors.lightBlue[900],
+                    ),
         ],
        ),
      );

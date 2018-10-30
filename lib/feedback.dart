@@ -24,11 +24,11 @@ class _FeedbackFormState extends State<FeedbackForm> {
       Firestore.instance.runTransaction((Transaction transaction) async {
         CollectionReference reference = Firestore.instance.collection('feedback');
         await reference.add ({
+            "dateTime": DateTime.now().toUtc(),
             "enquiry_type": selected,
             "name": nameController.text,
             "email": emailController.text,
             "comments": commentsController.text,
-
          });
       }) ;
       Navigator.pop(context);
@@ -83,13 +83,16 @@ class _FeedbackFormState extends State<FeedbackForm> {
               new Container(
                 child: DropdownButtonHideUnderline(
                         child: new DropdownButton(
+                          
                           value: selected,
                           items: listDrop,
                           hint: new Text('Enquiry Type', style: new TextStyle(fontFamily: 'Nunito', fontSize: 25.0),),
                           elevation: 20,
                           onChanged: (value) {
                             selected = value;
-                            setState(() {} );
+
+                                setState(() {} );
+                            
                           }
 
                         )
