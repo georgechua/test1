@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BankContent extends StatelessWidget {
+class FinanceContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(

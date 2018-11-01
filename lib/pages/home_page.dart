@@ -7,7 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import './riskprofile_page.dart';
 import '../result.dart';
 import '../stockcontent.dart';
-import '../bankcontent.dart';
+import '../financecontent.dart';
 import '../investcontent.dart';
 import '../economicscontent.dart';
 import '../feedback.dart';
@@ -21,9 +21,10 @@ class MyHomePage extends StatelessWidget {
   //MyHomePage({Key key, this.title}) : super(key: key);
   //final String title;
 
-  MyHomePage({this.auth, this.onSignedOut});
+  MyHomePage({this.auth, this.onSignedOut,this.user});
   final BaseAuth auth;
   final VoidCallback onSignedOut;
+  final FirebaseUser user;
 
  void _signOut() async{
     try{
@@ -70,26 +71,27 @@ String getEmail = null;
       },
     ),
        
-              new UserAccountsDrawerHeader(
+        new UserAccountsDrawerHeader(
               decoration: new BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('images/drawerheader.jpg'),
                   fit: BoxFit.fill
                 )
               ),
-              /* accountName: new Text(''),
-              accountEmail: new Text('$getEmail'),
-              currentAccountPicture: new CircleAvatar(
-                backgroundImage: new NetworkImage('http://i.pravatar.cc/300'
-                ), 
-              ), */
+              accountName: new Text('FINEDUBOT'),
+              accountEmail: new Text('user'),
+                  currentAccountPicture: new CircleAvatar(
+                  backgroundImage: new NetworkImage('http://i.pravatar.cc/300'
+                  ), 
+              ), 
               
           /*   otherAccountsPictures: <Widget>[
                       new CircleAvatar(
                         backgroundImage: new NetworkImage('http://i.pravatar.cc/200'),
                       )
               ], */
-            ), 
+      
+        ),
             
            new ListTile(
              leading: new Icon(Icons.grade),
@@ -105,7 +107,7 @@ String getEmail = null;
            new ListTile(
              leading: new Icon(Icons.question_answer),
              contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
-             title: new Text('Result'),
+             title: new Text("Result"),
              onTap: () {
                Navigator.of(context).pop();
                Navigator.of(context).push(new MaterialPageRoute(
@@ -200,7 +202,7 @@ class HomeCard extends StatelessWidget {
               child: new Material(
                 color: Colors.blue[500],
                 child: new InkWell(
-                  onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new BankContent())),
+                  onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new FinanceContent())),
                   child: new Center(
                     child: new Container(
                       child: new Text("BANKING", style: TextStyle(color: Colors.white,fontFamily: 'Nunito', fontStyle: FontStyle.italic,fontWeight: FontWeight.bold, fontSize: 40.0)),

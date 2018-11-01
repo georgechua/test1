@@ -66,8 +66,6 @@ class _FeedbackFormState extends State<FeedbackForm> {
     ));
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
 
@@ -83,26 +81,19 @@ class _FeedbackFormState extends State<FeedbackForm> {
               new Container(
                 child: DropdownButtonHideUnderline(
                         child: new DropdownButton(
-                          
                           value: selected,
                           items: listDrop,
                           hint: new Text('Enquiry Type', style: new TextStyle(fontFamily: 'Nunito', fontSize: 25.0),),
                           elevation: 20,
                           onChanged: (value) {
                             selected = value;
-
                                 setState(() {} );
-                            
                           }
-
                         )
-
                       ),
                          padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 20.0),
                   ),
-               
-               new Container(
-                 
+               new Container( 
                  padding: EdgeInsets.fromLTRB(20.0,0.0,20.0,0.0),
                 //padding: EdgeInsets.all(30.0),
                    child: new Column(
@@ -126,11 +117,8 @@ class _FeedbackFormState extends State<FeedbackForm> {
                    ],
                 ),
               ),
-
               new Container(
-                       
                        child: new Column(
-                
                           children: <Widget>[
                             new TextFormField(
                               controller: emailController,
@@ -185,9 +173,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
                         onPressed: _addData,
                         splashColor: Colors.lightBlue[900],
                     )
-                   
             ],
-
          ),
     );
   }

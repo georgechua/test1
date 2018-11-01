@@ -7,7 +7,7 @@ import './root_page.dart';
 import './pages/riskprofile_page.dart';
 import './result.dart';
 import './stockcontent.dart';
-import './bankcontent.dart';
+import './financecontent.dart';
 import './investcontent.dart';
 import './economicscontent.dart';
 import './feedback.dart';
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
      
      home: new RootPage(auth: new Auth()),
      //home: new Calc(),
-     //home: new LogOut()
+     //home: new StockContent()
     );
   }
 }

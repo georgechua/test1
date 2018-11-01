@@ -1,91 +1,82 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:async';
+import 'auth.dart';
 
-class StockContent extends StatelessWidget {
+class StockContent extends StatefulWidget {
+
+
   @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      //home: Scaffold(
-        appBar: AppBar(
-          title: const Text('STOCK 101'),
-        ),
-        body: ListView.builder(
-          itemBuilder: (BuildContext context, int index) =>
-              EntryItem(data[index]),
-          itemCount: data.length,
-        ),
-      
-    );
-  }
+  _StockContentState createState() => _StockContentState();
 }
 
-// One entry in the multilevel list displayed by this app.
-class Entry {
-  Entry(this.title, [this.children = const <Entry>[]]);
+class _StockContentState extends State<StockContent> {
 
-  final String title;
-  final List<Entry> children;
-}
-
-// The entire multilevel list displayed by this app.
-final List<Entry> data = <Entry>[
-  Entry(
-    'Chapter A',
-    <Entry>[
-      Entry(
-        'Section A0',
-        <Entry>[
-          Entry('Item A0.1'),
-          Entry('Item A0.2'),
-          Entry('Item A0.3'),
-        ],
-      ),
-      Entry('Section A1'),
-      Entry('Section A2'),
-    ],
-  ),
-  Entry(
-    'Chapter B',
-    <Entry>[
-      Entry('Section B0'),
-      Entry('Section B1'),
-    ],
-  ),
-  Entry(
-    'Chapter C',
-    <Entry>[
-      Entry('Section C0'),
-      Entry('Section C1'),
-      Entry(
-        'Section C2',
-        <Entry>[
-          Entry('Item C2.0'),
-          Entry('Item C2.1'),
-          Entry('Item C2.2'),
-          Entry('Item C2.3'),
-        ],
-      ),
-    ],
-  ),
-];
-
-// Displays one Entry. If the entry has children then it's displayed
-// with an ExpansionTile.
-class EntryItem extends StatelessWidget {
-  const EntryItem(this.entry);
-
-  final Entry entry;
-
-  Widget _buildTiles(Entry root) {
-    if (root.children.isEmpty) return ListTile(title: Text(root.title));
-    return ExpansionTile(
-      key: PageStorageKey<Entry>(root),
-      title: Text(root.title),
-      children: root.children.map(_buildTiles).toList(),
-    );
-  }
+CollectionReference cRef = Firestore.instance.collection('Content').document('Stock').collection('stockcontent');
 
   @override
   Widget build(BuildContext context) {
-    return _buildTiles(entry);
+    return Scaffold(
+      appBar: new AppBar(
+        title: new Text("STOCK 101"),
+      ),
+      //backgroundColor: Colors.black87,
+         body:  StreamBuilder<QuerySnapshot>(
+            stream: cRef.snapshots(),
+            builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (!snapshot.hasData)
+                return new Text('No Data Found!');
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting: return new Text('Loading...');
+                default:
+                  return new ListView(
+                    children: snapshot.data.documents.map((DocumentSnapshot document) {
+                   return new GestureDetector(
+                    child: new Card(
+                        margin: EdgeInsets.all(10.0),
+                        elevation: 5.0,
+                     child: new Column(
+                    //mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                        new ListTile(
+                          contentPadding: EdgeInsets.all(25.0),
+                          title: new Text(document['title'], style: new TextStyle(fontSize:30.0, fontFamily: 'Nunito', fontWeight: FontWeight.bold,color: Colors.grey[850]),),
+                          subtitle: new Text(document['desc'], style: new TextStyle(fontSize:18.0, fontFamily: 'Nunito', fontWeight: FontWeight.normal,color: Colors.grey[850]),),
+                        ),
+                    ],  
+                  )
+                ),
+                onTap: (){
+
+                 showDialog(
+                      barrierDismissible: false,
+                      context:context,
+                      child: new SimpleDialog(
+                        title: new Text(document['title']),
+                          contentPadding: EdgeInsets.symmetric(horizontal:20.0,vertical:10.0),
+                          children: <Widget>[
+                            new Container(
+                              width: 3000.0,
+                              child: new Text(document['content'], style: new TextStyle(fontFamily: 'Nunito',fontSize: 20.0,color: Colors.grey[850]),), 
+                            ),
+                            
+                            new FlatButton(
+                              child:  new Icon(Icons.close),
+                                onPressed: () => Navigator.pop(context),
+                            ),
+                          ],
+                        )
+                      );
+
+                }
+               );
+            }).toList(),
+          );
+        }
+        
+      },
+    ),
+    );
   }
 }

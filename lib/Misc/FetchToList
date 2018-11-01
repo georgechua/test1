@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:async';
+import 'auth.dart';
+
+class StockContent extends StatefulWidget {
+
+
+  @override
+  _StockContentState createState() => _StockContentState();
+}
+
+
+
+
+class _StockContentState extends State<StockContent> {
+
+CollectionReference cRef = Firestore.instance.collection('Content').document('Stock').collection('stockcontent');
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: new AppBar(
+        title: new Text("STOCK 101")
+      ),
+         body:  StreamBuilder<QuerySnapshot>(
+      stream: cRef.snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError)
+          return new Text('Error: ${snapshot.error}');
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting: return new Text('Loading...');
+          default:
+            return new ListView(
+              children: snapshot.data.documents.map((DocumentSnapshot document) {
+                return new ListTile(
+                  title: new Text(document['title']),
+                  subtitle: new Text(document['desc']),
+                );
+              }).toList(),
+            );
+        }
+      },
+    ),
+    );
+  }
+}
+

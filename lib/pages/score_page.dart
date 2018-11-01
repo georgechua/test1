@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 import '../loginpage.dart';
 import 'dart:async';
 import '../main.dart';
@@ -16,6 +17,9 @@ class ScorePage extends StatefulWidget{
 }
 
 class _ScorePageState extends State <ScorePage>{
+  
+  String formattedDate = DateFormat('dd-MM-yyyy EEE – kk:mm:ss').format(DateTime.now().add(new Duration(hours:8)));
+  
   //Adding Result to Firebase
   void _addResult() {
     var docRef = Firestore.instance.collection('QuizResult');
@@ -26,7 +30,7 @@ class _ScorePageState extends State <ScorePage>{
             "total_question": widget.totalQuestion,
             "quiz_result": widget.score,
             "user_email": userEmail,
-            "dateTime": DateTime.now().toUtc(),
+            "dateTime": formattedDate
          });       
       }) ;
        this.setState(() {

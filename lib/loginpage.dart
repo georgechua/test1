@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 //Pages
-import './ui/googlebutton.dart';
-import './ui/google_btn_main.dart';
-import './main.dart';
-import './materialbtn.dart';
 import 'auth.dart';
-
 
 class LoginPage extends StatefulWidget {
 
@@ -15,7 +9,6 @@ class LoginPage extends StatefulWidget {
   LoginPage({this.auth,this.onSignedIn});
   final BaseAuth auth;
   final VoidCallback onSignedIn;
-
 
   @override
   State createState() => _LoginPageState();

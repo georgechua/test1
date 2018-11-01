@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:async';
+import 'auth.dart';
 
 class InvestmentContent extends StatelessWidget {
+
+  CollectionReference cRef = Firestore.instance.collection('Content').document('Stock').collection('stockcontent');
+  
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -33,39 +41,10 @@ final List<Entry> data = <Entry>[
     <Entry>[
       Entry(
         'Section A0',
-        <Entry>[
-          Entry('Item A0.1'),
-          Entry('Item A0.2'),
-          Entry('Item A0.3'),
-        ],
-      ),
-      Entry('Section A1'),
-      Entry('Section A2'),
-    ],
-  ),
-  Entry(
-    'Chapter B',
-    <Entry>[
-      Entry('Section B0'),
-      Entry('Section B1'),
-    ],
-  ),
-  Entry(
-    'Chapter C',
-    <Entry>[
-      Entry('Section C0'),
-      Entry('Section C1'),
-      Entry(
-        'Section C2',
-        <Entry>[
-          Entry('Item C2.0'),
-          Entry('Item C2.1'),
-          Entry('Item C2.2'),
-          Entry('Item C2.3'),
-        ],
       ),
     ],
   ),
+  
 ];
 
 // Displays one Entry. If the entry has children then it's displayed
