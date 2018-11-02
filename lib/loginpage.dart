@@ -117,7 +117,7 @@ void moveToLogin(){
                 padding: const EdgeInsets.all(20.0),
                 child: new Theme(
                   data: new ThemeData(brightness: Brightness.dark,primarySwatch: Colors.blue, inputDecorationTheme: new InputDecorationTheme(
-                  labelStyle: new TextStyle(color: Colors.white, fontSize: 20.0, fontStyle: FontStyle.italic))),
+                  labelStyle: new TextStyle(fontFamily:'Nunito',color: Colors.white, fontSize: 20.0, fontStyle: FontStyle.italic))),
 
                     child: new Form(
                         key:formKey,         
@@ -171,11 +171,11 @@ void moveToLogin(){
                         minWidth: 500.0,
                         color: Colors.blue,
                         textColor: Colors.white,
-                        child: new Text("Sign In", style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),),
+                        child: new Text("Sign In", style: new TextStyle(fontFamily: 'Nunito',fontWeight: FontWeight.bold, fontSize: 19.0),),
                         
                         onPressed: validateAndSubmit,
                       
-                        splashColor: Colors.lightBlue[900],
+                        splashColor: Colors.blue[600],
                     ),
                     new Padding(
                         padding: const EdgeInsets.only(bottom:15.0),
@@ -184,7 +184,7 @@ void moveToLogin(){
                     new FlatButton(
                       child: new Text('Create an account', 
                         style: new TextStyle(
-                          fontSize: 17.0,
+                          fontSize: 19.0,
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.normal,
                           color: Colors.white
@@ -201,9 +201,9 @@ void moveToLogin(){
                         minWidth: 500.0,
                         color: Colors.blue,
                         textColor: Colors.white,
-                        child: new Text("Create an account", style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),),
+                        child: new Text("Create an account", style: new TextStyle(fontFamily: 'Nunito',fontWeight: FontWeight.bold, fontSize: 19.0,),),
                         onPressed: validateAndSubmit,
-                        splashColor: Colors.lightBlue[900],
+                        splashColor: Colors.blue[600],
                     ),
                      new Padding(
                         padding: const EdgeInsets.only(bottom:15.0),
@@ -212,11 +212,11 @@ void moveToLogin(){
                         elevation: 5.0,
                         height: 40.0,
                         minWidth: 500.0,
-                        color: Colors.green,
+                        color: Colors.green[600],
                         textColor: Colors.white,
-                        child: new Text("Have an account? Login", style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),),
+                        child: new Text("Have an account? Login", style: new TextStyle(fontFamily: 'Nunito',fontWeight: FontWeight.bold, fontSize: 19.0),),
                         onPressed: moveToLogin,
-                        splashColor: Colors.lightBlue[900],
+                        splashColor: Colors.white70,
                     ),            
        ];
      }

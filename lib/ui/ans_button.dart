@@ -11,18 +11,17 @@ class AnswerButton extends StatelessWidget {
   Widget build(BuildContext context) {
          return new Expanded( //true button expand
             child: new Material(
-            color: _answer == true ? Colors.greenAccent : Colors.redAccent,
+            color: _answer == true ? Colors.teal : Colors.red,
             child: new InkWell(
               onTap: () => _onTap(),
               child: new Center(
                 child: new Container(
                   decoration: new BoxDecoration(
-                    border: new Border.all(color: Colors.white, width: 5.0)
+                    //border: new Border.all(color: Colors.white, width: 5.0)
                   ),
                   padding: new EdgeInsets.all(20.0),
-                  
                   child: new Text(_answer == true ? "True" : "False",
-                  style: new TextStyle(color: Colors.white, fontSize: 40.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)
+                  style: new TextStyle(fontFamily:'Nunito',color: Colors.white, fontSize: 40.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)
                   ),
               )
             ),

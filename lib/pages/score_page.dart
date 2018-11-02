@@ -44,16 +44,16 @@ class _ScorePageState extends State <ScorePage>{
   @override
   Widget build(BuildContext context){
     return new Material(
-      color: Colors.blueAccent,
+      color: Colors.blue[700],
       child: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          new Text("Your Score:", style: new TextStyle(color: Colors.white, fontWeight: FontWeight.bold,  fontSize: 50.0),),
-          new Text(widget.score.toString() + "/" + widget.totalQuestion.toString(), style: new TextStyle(color: Colors.white, fontWeight: FontWeight.bold,  fontSize: 50.0),),
+          new Text("Your Score:", style: new TextStyle(color: Colors.white, fontFamily: 'Nunito', fontWeight: FontWeight.bold,  fontSize: 50.0),),
+          new Text(widget.score.toString() + " / " + widget.totalQuestion.toString(), style: new TextStyle(fontFamily:'Nunito', color: Colors.white, fontWeight: FontWeight.bold,  fontSize: 50.0),),
           new IconButton(
             icon: new Icon(Icons.arrow_right),
             color: Colors.white,
-            iconSize: 50.0,
+            iconSize: 90.0,
             onPressed: _addResult,
           ),
           
@@ -64,7 +64,6 @@ class _ScorePageState extends State <ScorePage>{
           userEmail = (snapshot.data.email);
           return new Container();
         }
-        
       },
     ), 
     

@@ -43,34 +43,35 @@ CollectionReference cRef = Firestore.instance.collection('Content').document('St
                           contentPadding: EdgeInsets.all(25.0),
                           title: new Text(document['title'], style: new TextStyle(fontSize:30.0, fontFamily: 'Nunito', fontWeight: FontWeight.bold,color: Colors.grey[850]),),
                           subtitle: new Text(document['desc'], style: new TextStyle(fontSize:18.0, fontFamily: 'Nunito', fontWeight: FontWeight.normal,color: Colors.grey[850]),),
+                          
                         ),
                     ],  
                   )
                 ),
                 onTap: (){
-
                  showDialog(
                       barrierDismissible: false,
                       context:context,
                       child: new SimpleDialog(
+                        
                         title: new Text(document['title']),
                           contentPadding: EdgeInsets.symmetric(horizontal:20.0,vertical:10.0),
+                          
                           children: <Widget>[
                             new Container(
                               width: 3000.0,
                               child: new Text(document['content'], style: new TextStyle(fontFamily: 'Nunito',fontSize: 20.0,color: Colors.grey[850]),), 
                             ),
-                            
                             new FlatButton(
                               child:  new Icon(Icons.close),
                                 onPressed: () => Navigator.pop(context),
                             ),
+                            
                           ],
                         )
                       );
-
                 }
-               );
+                );
             }).toList(),
           );
         }

@@ -21,10 +21,11 @@ class MyHomePage extends StatelessWidget {
   //MyHomePage({Key key, this.title}) : super(key: key);
   //final String title;
 
-  MyHomePage({this.auth, this.onSignedOut,this.user});
+  MyHomePage({this.auth, this.onSignedOut,this.user,this.email});
   final BaseAuth auth;
   final VoidCallback onSignedOut;
   final FirebaseUser user;
+  final String email;
 
  void _signOut() async{
     try{
@@ -58,45 +59,16 @@ String getEmail = null;
     ),
       drawer: new Drawer(
         child: ListView(
-          children: <Widget>[
-            new FutureBuilder<FirebaseUser>(
-      future: FirebaseAuth.instance.currentUser(),
-      builder: (BuildContext context, AsyncSnapshot<FirebaseUser> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
           
-          getEmail = (snapshot.data.email);
-          return new Container();
-        }
-        
-      },
-    ),
-       
-        new UserAccountsDrawerHeader(
-              decoration: new BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('images/drawerheader.jpg'),
-                  fit: BoxFit.fill
-                )
-              ),
-              accountName: new Text('FINEDUBOT'),
-              accountEmail: new Text('user'),
-                  currentAccountPicture: new CircleAvatar(
-                  backgroundImage: new NetworkImage('http://i.pravatar.cc/300'
-                  ), 
-              ), 
-              
-          /*   otherAccountsPictures: <Widget>[
-                      new CircleAvatar(
-                        backgroundImage: new NetworkImage('http://i.pravatar.cc/200'),
-                      )
-              ], */
-      
-        ),
-            
+          children: <Widget>[
+            new Container(
+              padding: EdgeInsets.fromLTRB(38.0,50.0,40.0,30.0),
+                child: new Text('FINEDUBOT',style: new TextStyle(fontSize:38.0, fontFamily:'Nunito',fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,color: Colors.grey[850])),
+            ),
            new ListTile(
              leading: new Icon(Icons.grade),
-             //contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
-             title: new Text('Quiz'),
+             contentPadding: new EdgeInsets.symmetric(horizontal: 40.0),
+             title: new Text('Quiz',style: new TextStyle(fontFamily: 'Nunito', fontSize: 20.0, color: Colors.grey[850]),),
              onTap: () {
                Navigator.of(context).pop();
                Navigator.of(context).push(new MaterialPageRoute(
@@ -106,8 +78,8 @@ String getEmail = null;
            ),
            new ListTile(
              leading: new Icon(Icons.question_answer),
-             contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
-             title: new Text("Result"),
+             contentPadding: new EdgeInsets.symmetric(horizontal: 40.0),
+             title: new Text("Result",style: new TextStyle(fontFamily: 'Nunito', fontSize: 20.0, color: Colors.grey[850]),),
              onTap: () {
                Navigator.of(context).pop();
                Navigator.of(context).push(new MaterialPageRoute(
@@ -117,8 +89,8 @@ String getEmail = null;
            ),
            new ListTile(
              leading: new Icon(Icons.person),
-             contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
-             title: new Text('Risk Profile'),
+             contentPadding: new EdgeInsets.symmetric(horizontal: 40.0),
+             title: new Text('Risk Profile',style: new TextStyle(fontFamily: 'Nunito', fontSize: 20.0, color: Colors.grey[850]),),
              onTap: () {
                Navigator.of(context).pop();
               Navigator.of(context).push(new MaterialPageRoute(
@@ -128,8 +100,8 @@ String getEmail = null;
            ),
            new ListTile(
              leading: new Icon(Icons.apps),
-             contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
-             title: new Text('Loan Calculator'),
+             contentPadding: new EdgeInsets.symmetric(horizontal: 40.0),
+             title: new Text('Loan Calculator',style: new TextStyle(fontFamily: 'Nunito', fontSize: 20.0, color: Colors.grey[850]),),
              onTap: () {
                Navigator.of(context).pop();
               Navigator.of(context).push(new MaterialPageRoute(
@@ -139,8 +111,8 @@ String getEmail = null;
            ),
            new ListTile(
              leading: new Icon(Icons.feedback),
-             contentPadding: new EdgeInsets.symmetric(horizontal: 16.0),
-             title: new Text('Feedback'),
+             contentPadding: new EdgeInsets.symmetric(horizontal: 40.0),
+             title: new Text('Feedback',style: new TextStyle(fontFamily: 'Nunito', fontSize: 20.0, color: Colors.grey[850]),),
              onTap: () {
                Navigator.of(context).pop();
               Navigator.of(context).push(new MaterialPageRoute(
@@ -184,7 +156,7 @@ class HomeCard extends StatelessWidget {
         new Expanded(
                 child: new Material(
                 
-                 color: Colors.blue[300],
+                 color: Colors.blue[600],
                   child: new InkWell(
                     onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new StockContent())),
                     splashColor: Colors.greenAccent,
@@ -200,7 +172,7 @@ class HomeCard extends StatelessWidget {
             ),
             new Expanded(
               child: new Material(
-                color: Colors.blue[500],
+                color: Colors.blue[700],
                 child: new InkWell(
                   onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new FinanceContent())),
                   child: new Center(
@@ -213,7 +185,7 @@ class HomeCard extends StatelessWidget {
             ),
             new Expanded(
               child: new Material(
-                color: Colors.blue[700],
+                color: Colors.blue[800],
                 child: new InkWell(
                   onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new EconomicsContent())),
                   child: new Center(
@@ -261,3 +233,24 @@ class DrawerImage extends StatelessWidget {
   }
 }
 
+/* class GetUser extends StatelessWidget {
+  String email = '';
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+    body:  new FutureBuilder<FirebaseUser>(
+                future: FirebaseAuth.instance.currentUser(),
+                builder: (BuildContext context, AsyncSnapshot<FirebaseUser> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    email = (snapshot.data.email);
+                    return new Text(email);
+                  }
+                  else {
+                    return new Text('Loading...');
+                  }
+                },
+              ),
+    );
+  }
+} */

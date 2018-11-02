@@ -49,19 +49,19 @@ class _FeedbackFormState extends State<FeedbackForm> {
   void loadData() {
     listDrop = []; 
     listDrop.add(new DropdownMenuItem(
-        child: new Text('Content Related'),
+        child: new Text('Content Related', style: new TextStyle(fontFamily: 'Nunito', fontSize: 25.0,color: Colors.grey[850])),
         value: 'content_feedback',
     ));
     listDrop.add(new DropdownMenuItem(
-        child: new Text('Account Related'),
+        child: new Text('Account Related', style: new TextStyle(fontFamily: 'Nunito', fontSize: 25.0,color: Colors.grey[850])),
         value: 'account_feedback',
     )); 
     listDrop.add(new DropdownMenuItem(
-        child: new Text('Quiz Related'),
+        child: new Text('Quiz Related', style: new TextStyle(fontFamily: 'Nunito', fontSize: 25.0,color: Colors.grey[850])),
         value: 'quiz_feedback',
     )); 
     listDrop.add(new DropdownMenuItem(
-        child: new Text('Others'),
+        child: new Text('Others', style: new TextStyle(fontFamily: 'Nunito', fontSize: 25.0,color: Colors.grey[850])),
         value: 'others_feedback',
     ));
   }
@@ -83,7 +83,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
                         child: new DropdownButton(
                           value: selected,
                           items: listDrop,
-                          hint: new Text('Enquiry Type', style: new TextStyle(fontFamily: 'Nunito', fontSize: 25.0),),
+                          hint: new Text('Enquiry Type', style: new TextStyle(fontFamily: 'Nunito', fontSize: 25.0,color: Colors.grey[850]),),
                           elevation: 20,
                           onChanged: (value) {
                             selected = value;
@@ -106,7 +106,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
                           //counterText: "10",
                           labelText: "Name",
                           //hintText: "Name",
-                          labelStyle: TextStyle(fontFamily: 'Nunito',fontSize: 25.0,color: Colors.black54),
+                          labelStyle: TextStyle(fontFamily: 'Nunito',fontSize: 25.0,color: Colors.grey[850]),
                           contentPadding: EdgeInsets.fromLTRB(20.0,30.0,0.0,0.0),
                               border: new OutlineInputBorder(
                                 borderRadius: new BorderRadius.circular(15.0)
@@ -125,7 +125,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
                               autofocus: false,
                     decoration: (new InputDecoration(
                                 labelText: "Email",
-                                labelStyle: TextStyle(fontFamily: 'Nunito',fontSize: 25.0,color: Colors.black54),
+                                labelStyle: TextStyle(fontFamily: 'Nunito',fontSize: 25.0,color: Colors.grey[850]),
                                 contentPadding: EdgeInsets.fromLTRB(20.0,30.0,20.0,0.0),
                                       border: new OutlineInputBorder(
                               borderRadius: new BorderRadius.circular(15.0)
@@ -148,7 +148,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
                               autofocus: false,
                     decoration: (new InputDecoration(
                                 labelText: "Comments",
-                                labelStyle: TextStyle(fontFamily: 'Nunito',fontSize: 25.0,color: Colors.black54),
+                                labelStyle: TextStyle(fontFamily: 'Nunito',fontSize: 25.0,color: Colors.grey[850]),
                                 contentPadding: EdgeInsets.fromLTRB(20.0,30.0,20.0,0.0),
                                       border: new OutlineInputBorder(
                               borderRadius: new BorderRadius.circular(15.0)
@@ -165,13 +165,12 @@ class _FeedbackFormState extends State<FeedbackForm> {
                         
                      ),
                     new MaterialButton(
-                        height: 40.0,
-                        minWidth: 100.0,
-                        color: Colors.blue,
-                        textColor: Colors.white,
-                        child: new Text("Send", style: new TextStyle(fontFamily: 'Nunito', fontSize: 17.0),),
+                        height: 50.0,
+                        minWidth: 200.0,
+                        color: Colors.blue[700],
+                        child: new Text("Send", style: new TextStyle(fontFamily: 'Nunito', fontSize: 25.0,color: Colors.white)),
                         onPressed: _addData,
-                        splashColor: Colors.lightBlue[900],
+                        splashColor: Colors.white70,
                     )
             ],
          ),
