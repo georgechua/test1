@@ -21,6 +21,8 @@ dependencies:
   firebase_auth: ^0.6.2+1
   cloud_firestore: ^0.8.2+1
   intl: ^0.15.7
+  decimal: ^0.3.0
+  flutter_webview_plugin: ^0.2.1+2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -35,7 +37,7 @@ dev_dependencies:
 
 flutter_icons:
   image_path: "icon/icon.png"
-  adnroid: true
+  android: true
   ios: true
   
 
@@ -52,14 +54,23 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - images/stock.png
-   - images/stockmarket.jpg
    - images/drawerheader.jpg
    - images/loginbg.jpg
    - images/logo.png
    - images/onlylogo.png
    - images/loginbg1.png
    - images/google.png
+   - images/9.jpg
+   - images/13.jpg
+   - images/22.jpg
+   - images/23.jpg
+   - images/21.jpg
+   - images/card1.png
+   - images/card2.jpg
+   - images/card3.jpg
+   - images/card4.jpg
+   - images/george.png
+   - images/jared.png
   #  - images/a_dot_ham.jpegR
 
   # An image asset can refer to one or more resolution-specific "variants", see

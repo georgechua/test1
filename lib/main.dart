@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       title: 'FinEduBot Demo',
       theme: new ThemeData(
         //fontFamily: 'Nunito',
-        primaryColor: Colors.blue[700],
+        primaryColor: Colors.white,
         canvasColor: Colors.white,
       ),
      

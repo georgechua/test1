@@ -73,8 +73,9 @@ class _FeedbackFormState extends State<FeedbackForm> {
 
     return new Scaffold(
       appBar: AppBar(
-        title: new Text('Feedback'),
-        
+        centerTitle: true,
+        title: new Text('Feedback',style: new TextStyle(fontFamily: 'Nunito',color: Colors.grey[850],fontWeight: FontWeight.bold)),
+        elevation: 1.0,
       ),
          body: new Column(
             children: <Widget>[
@@ -98,7 +99,6 @@ class _FeedbackFormState extends State<FeedbackForm> {
                 //padding: EdgeInsets.all(30.0),
                    child: new Column(
                         children: <Widget>[
-
                           new TextFormField(
                             controller: nameController,
                             autofocus: false,
@@ -167,7 +167,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
                     new MaterialButton(
                         height: 50.0,
                         minWidth: 200.0,
-                        color: Colors.blue[700],
+                        color: Colors.orange[800],
                         child: new Text("Send", style: new TextStyle(fontFamily: 'Nunito', fontSize: 25.0,color: Colors.white)),
                         onPressed: _addData,
                         splashColor: Colors.white70,

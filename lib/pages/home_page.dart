@@ -15,11 +15,10 @@ import '../pages/landing.dart';
 import '../auth.dart';
 import './logout_page.dart';
 import '../loancalculator.dart';
-
+import '../questionnaires.dart';
+import '../aboutus.dart';
 
 class MyHomePage extends StatelessWidget {
-  //MyHomePage({Key key, this.title}) : super(key: key);
-  //final String title;
 
   MyHomePage({this.auth, this.onSignedOut,this.user,this.email});
   final BaseAuth auth;
@@ -28,27 +27,27 @@ class MyHomePage extends StatelessWidget {
   final String email;
 
  void _signOut() async{
-    try{
+   try{
         await auth.signOut();
         onSignedOut();
     }catch(e){
         print(e);
-    }
+    } 
 }
 
-String getEmail = null;
+  String getEmail = null;
 
   @override
   Widget build(BuildContext context) {
       
     return new Scaffold(
       appBar: new AppBar(
-      title: new Text('Home'),
+      title: new Text('Home',style: new TextStyle(color: Colors.grey[850],fontFamily:'Nunito',fontWeight: FontWeight.bold),),
       centerTitle: true,
       elevation: defaultTargetPlatform == TargetPlatform.android ? 5.0 : 0.0,
       actions: <Widget>[
         new FlatButton(
-          child: new Icon(Icons.exit_to_app,color: Colors.white,size: 30.0,),
+          child: new Icon(Icons.exit_to_app,color: Colors.grey[850],size: 30.0,),
           padding: EdgeInsets.only(left:30.0),
           onPressed: _signOut,
           
@@ -58,8 +57,8 @@ String getEmail = null;
       
     ),
       drawer: new Drawer(
+        elevation: 20.0,
         child: ListView(
-          
           children: <Widget>[
             new Container(
               padding: EdgeInsets.fromLTRB(38.0,50.0,40.0,30.0),
@@ -105,9 +104,23 @@ String getEmail = null;
              onTap: () {
                Navigator.of(context).pop();
               Navigator.of(context).push(new MaterialPageRoute(
-                builder : (BuildContext context) => new Calc()
+                builder : (BuildContext context) => new LoanCalc()
               ));
              },
+           ),
+           new ListTile(
+             leading: new Icon(Icons.note_add),
+             contentPadding: new EdgeInsets.symmetric(horizontal: 40.0),
+             title: new Text('Questionnaires',style: new TextStyle(fontFamily: 'Nunito', fontSize: 20.0, color: Colors.grey[850]),),
+             onTap: () {
+               Navigator.of(context).pop();
+              Navigator.of(context).push(new MaterialPageRoute(
+                builder : (BuildContext context) => new Questionnaires()
+              ));
+             },
+           ),
+           new Divider(
+             height: 1.0,
            ),
            new ListTile(
              leading: new Icon(Icons.feedback),
@@ -120,97 +133,125 @@ String getEmail = null;
               ));
              },
            ),
+           new ListTile(
+             leading: new Icon(Icons.info),
+             contentPadding: new EdgeInsets.symmetric(horizontal: 40.0),
+             title: new Text('About Us',style: new TextStyle(fontFamily: 'Nunito', fontSize: 20.0, color: Colors.grey[850]),),
+             onTap: () {
+               Navigator.of(context).pop();
+              Navigator.of(context).push(new MaterialPageRoute(
+                builder : (BuildContext context) => new AboutUs()
+              ));
+             },
+           ),
           ],
         ),
 
     ),
 
-    body: new Stack(
-      children: <Widget>[
-        new HomeCard()
-      ],
-    ),
+    body: new ListView(
+        children: <Widget>[
+            new HomeCard()
+        ],
+     ),
     );
   }
-
 }
 
 class HomeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context){
+   
      return new Column(
           children: <Widget>[
-            new Column(
-              children: <Widget>[
-                new Container(
-                  padding: EdgeInsets.all(110.0),
-                  decoration: new BoxDecoration(
-                          image: new DecorationImage(
-                            image: new AssetImage("images/stockmarket.jpg"),
-                            fit: BoxFit.cover
-                          )
-                        ),
-                    ),
-              ],
+              new GestureDetector(child: new Card(
+              margin: EdgeInsets.all(0.0),
+              child: new Stack(
+                fit: StackFit.passthrough,
+                children: <Widget>[
+                  new Image(image: new AssetImage("images/card2.jpg"),
+                    fit: BoxFit.cover,
+                    color: Colors.black54,
+                    colorBlendMode: BlendMode.darken,),
+                   new Padding(
+                       padding: EdgeInsets.only(top:20.0,left:20.0),
+                       child: new Row(children: <Widget>[
+                          new Text('STOCK',style: new TextStyle(color: Colors.white,fontFamily:'Nunito',fontSize:40.0,fontStyle:FontStyle.italic, fontWeight: FontWeight.bold),)
+                       ],
+                      ),        
+                      )
+                    ],
+              ), 
             ),
-        new Expanded(
-                child: new Material(
-                
-                 color: Colors.blue[600],
-                  child: new InkWell(
-                    onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new StockContent())),
-                    splashColor: Colors.greenAccent,
-                    child: new Center(
-                      
-                      child: new Container(
-                        
-                        child: new Text("STOCK", style: TextStyle(color: Colors.white,fontFamily: 'Nunito', fontStyle: FontStyle.italic,fontWeight: FontWeight.bold, fontSize: 40.0)),
+            onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new StockContent())),
+          ),
+              new GestureDetector(
+          child: new Card(
+              margin: EdgeInsets.all(0.0),
+              child: new Stack(
+                children: <Widget>[
+                  new Image(image: new AssetImage("images/card1.png"),
+                    fit: BoxFit.cover,
+                    color: Colors.black54,
+                    colorBlendMode: BlendMode.darken,),
+                   new Padding(
+                       padding: EdgeInsets.only(top:20.0,left:20.0),
+                       child: new Row(children: <Widget>[
+                          new Text('FINANCE',style: new TextStyle(color: Colors.white,fontFamily:'Nunito',fontSize:40.0,fontStyle:FontStyle.italic, fontWeight: FontWeight.bold),)
+                       ],
                       ),
                     ),
-                  ),
-                ),
-            ),
-            new Expanded(
-              child: new Material(
-                color: Colors.blue[700],
-                child: new InkWell(
-                  onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new FinanceContent())),
-                  child: new Center(
-                    child: new Container(
-                      child: new Text("BANKING", style: TextStyle(color: Colors.white,fontFamily: 'Nunito', fontStyle: FontStyle.italic,fontWeight: FontWeight.bold, fontSize: 40.0)),
-                    ),
-                  ),
-                ),
+                  ],
+                ), 
               ),
+              onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new FinanceContent())),
             ),
-            new Expanded(
-              child: new Material(
-                color: Colors.blue[800],
-                child: new InkWell(
-                  onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new EconomicsContent())),
-                  child: new Center(
-                    child: new Container(
-                      child: new Text("ECONOMICS", style: TextStyle(color: Colors.white,fontFamily: 'Nunito', fontStyle: FontStyle.italic,fontWeight: FontWeight.bold, fontSize: 40.0)),
-                    ),
-                  ),
-                ),
-              ),
+           new GestureDetector(
+           child: new Card(
+              margin: EdgeInsets.all(0.0),
+              child: new Stack(
+                children: <Widget>[
+                  new Image(image: new AssetImage("images/card3.jpg"),
+                    fit: BoxFit.cover,
+                    color: Colors.black54,
+                    colorBlendMode: BlendMode.darken,),
+                   new Padding(
+                       padding: EdgeInsets.only(top:20.0,left:20.0),
+                       child: new Row(children: <Widget>[
+                          new Text('ECONOMICS',style: new TextStyle(color: Colors.white,fontFamily:'Nunito',fontSize:40.0,fontStyle:FontStyle.italic, fontWeight: FontWeight.bold),)
+                       ],
+                       ),
+                       
+                       )
+                       ],
+              ), 
             ),
-            new Expanded(
-              child: new Material(
-                color: Colors.blue[900],
-                child: new InkWell(
-                  onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new InvestmentContent())),
-                  child: new Center(
-                    child: new Container(
-                        child: new Text("INVESTMENT", style: TextStyle(color: Colors.white,fontFamily: 'Nunito', fontStyle: FontStyle.italic,fontWeight: FontWeight.bold, fontSize: 40.0)),
-                    ),
+             onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new EconomicsContent())),
+          ),
+           new GestureDetector(
+           child: new Card(
+              margin: EdgeInsets.all(0.0),
+              child: new Stack(
+                children: <Widget>[
+                  new Image(image: new AssetImage("images/card4.jpg"),
+                    fit: BoxFit.cover,
+                    color: Colors.black54,
+                    colorBlendMode: BlendMode.darken,),
+                   new Padding(
+                       padding: EdgeInsets.only(top:20.0,left:20.0),
+                       child: new Row(children: <Widget>[
+                          new Text('INVESTMENT',style: new TextStyle(color: Colors.white,fontFamily:'Nunito',fontSize:40.0,fontStyle:FontStyle.italic, fontWeight: FontWeight.bold),)
+                       ],
+                       ),
+                       
+                       )
+                      ],
+                    ), 
                   ),
-                ),
+                onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new InvestmentContent())),
               ),
-            )  
-          ],
-        );
+            ],
+          );           
   }
 } 
 
@@ -232,25 +273,3 @@ class DrawerImage extends StatelessWidget {
     return Container(child: image);
   }
 }
-
-/* class GetUser extends StatelessWidget {
-  String email = '';
-  
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-    body:  new FutureBuilder<FirebaseUser>(
-                future: FirebaseAuth.instance.currentUser(),
-                builder: (BuildContext context, AsyncSnapshot<FirebaseUser> snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    email = (snapshot.data.email);
-                    return new Text(email);
-                  }
-                  else {
-                    return new Text('Loading...');
-                  }
-                },
-              ),
-    );
-  }
-} */

@@ -18,7 +18,9 @@ class _RiskProfileState extends State<RiskProfile> {
     
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('Risk Profile Assessment'),
+        centerTitle: true,
+        elevation: 1.0,
+        title: new Text('Risk Profile Assessment',style: new TextStyle(fontFamily: 'Nunito',fontWeight: FontWeight.bold,color: Colors.grey[850]),),
       /*  actions: <Widget>[
           
           new Container(
@@ -63,7 +65,7 @@ class _RiskProfileState extends State<RiskProfile> {
              new Column(
                 children: <Widget>[
                   new CheckboxListTile(
-                    title: new Text('Debt free?'),
+                    title: new Text('Debt free?',style: new TextStyle(fontFamily: 'Nunito',fontWeight: FontWeight.bold,color: Colors.grey[850]),),
                     onChanged: (bool resp){
                       setState(() {
                           sel = resp;
@@ -73,7 +75,7 @@ class _RiskProfileState extends State<RiskProfile> {
                     value: sel,
              ),
               new CheckboxListTile(
-                title: new Text('Married?'),
+                title: new Text('Married?',style: new TextStyle(fontFamily: 'Nunito',fontWeight: FontWeight.bold,color: Colors.grey[850]),),
                 onChanged: (bool resp){
                   setState(() {
                       sel1 = resp;
@@ -84,13 +86,13 @@ class _RiskProfileState extends State<RiskProfile> {
             ],
           ),
             new MaterialButton(
-                        height: 40.0,
-                        minWidth: 100.0,
-                        color: Colors.blue,
+                        height: 50.0,
+                        minWidth: 200.0,
+                        color: Colors.orange[800],
                         textColor: Colors.white,
-                        child: new Text("Submit", style: new TextStyle(fontFamily: 'Nunito', fontSize: 17.0),),
+                        child: new Text("Submit", style: new TextStyle(fontFamily: 'Nunito', fontSize: 25.0),),
                         onPressed: () => {},
-                        splashColor: Colors.lightBlue[900],
+                        splashColor: Colors.white70,
                     ),
         ],
        ),

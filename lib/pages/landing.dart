@@ -8,7 +8,7 @@ class Landing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Material(
-      color: Colors.blue[700],
+      color: Colors.orange[800],
       child: new InkWell(
         onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => QuizPage())),
         

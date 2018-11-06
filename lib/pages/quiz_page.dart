@@ -16,8 +16,17 @@ class QuizPageState extends State <QuizPage>{
 
   Question currentQuestion;
   Quiz quiz = new Quiz([
-    new Question("Is trading bad for teens?", true),
-    new Question("Is apple sweet black?", false)
+    //new Question("Is 1+1 = 2?", true),
+    //new Question("Is 2+2 = 5?", false),
+    new Question("Financial modelling is a quantitative analysis commonly used for either asset pricing or general corporate finance.", true),
+    new Question("Cash flow statement a.k.a cash flow is a financial statement that shows how changes in balance sheet accounts and income affect cash and cash equivalents, and breaks the analysis down to operating, investing and financing activities. Essentially, the cash flow statement is concerned with the flow of cash in and out of the business.", true),
+    new Question("Is it possible for a company to have positive cash flow but still be in serious financial trouble?", true),
+    new Question("Working capital is the best defined as current assets minus current liabilities.", true),
+    new Question("Cost accountancy is the application of costing and cost accounting principles, methods and techniques to the science, art and practice of cost control and the ascertainment of profitability as well as the presentation of information for the purpose of managerial decision making.", true),
+    new Question("Financial planning generally involves analysing an individual's or a family's current financial position, and formulating strategies for future needs within financial constraints.", true), 
+    new Question("Corporate finance is a very personal activity that depends largely on one's earnings, living requirements, goals and individual desires.", false), 
+    new Question("Finance is a group or network of institutions that provide financial services for us.", false),   
+    new Question("Investing is a habit that teenagers should start earlier. Is the statement true?", true),
   ]);
 
   String questionText;
@@ -32,21 +41,14 @@ class QuizPageState extends State <QuizPage>{
     currentQuestion = quiz.nextQuestion;
     questionText = currentQuestion.question;
     questionNumber = quiz.questionNumber;
-
-
   }
 
   void handleAnswer(bool answer) {
     isCorrect = (currentQuestion.answer == answer);
     quiz.answer(isCorrect);
-       
       this.setState(() {
       overlayShouldBeVisible = true;
-     
     });
-  
-   
-   
   }
 
   @override

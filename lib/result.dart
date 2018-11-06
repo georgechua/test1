@@ -17,7 +17,8 @@ class _ResultPageState extends State<ResultPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('Overall Result'),
+        centerTitle: true,
+        title: new Text('Overall Result',style: new TextStyle(fontFamily: 'Nunito',fontWeight: FontWeight.bold,color: Colors.grey[850]),),
       ),
      body: new FutureBuilder<FirebaseUser>(
                 future: FirebaseAuth.instance.currentUser(),
@@ -40,8 +41,8 @@ class _ResultPageState extends State<ResultPage> {
                     children: snapshot.data.documents.map((DocumentSnapshot document) {
                  return new Card(
                     shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(10.0)),
-                    color: Colors.blue[600],
-                    margin: EdgeInsets.symmetric(vertical:8.0,horizontal: 40.0),
+                    color: Colors.orange[800],
+                    margin: EdgeInsets.symmetric(vertical:8.0,horizontal: 50.0),
                     elevation: 15.0,
                      child: new Column( 
                         

@@ -44,7 +44,7 @@ class _ScorePageState extends State <ScorePage>{
   @override
   Widget build(BuildContext context){
     return new Material(
-      color: Colors.blue[700],
+      color: Colors.orange[800],
       child: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
