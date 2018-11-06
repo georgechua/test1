@@ -10,8 +10,8 @@ class AboutUs extends StatelessWidget {
         centerTitle: true,
       ),
       body: new Container(
-
-            padding: EdgeInsets.only(top:30.0,left:70.0),
+            margin: EdgeInsets.only(top:30.0,left:60.0),
+            //padding: EdgeInsets.only(top:30.0,left:60.0),
               child: new Column(
                 //mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,

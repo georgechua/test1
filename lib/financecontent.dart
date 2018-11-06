@@ -66,7 +66,7 @@ CollectionReference cRef = Firestore.instance.collection('Content').document('Fi
                             ),
                             new FlatButton(
                               child:  new Icon(Icons.close),
-                                onPressed: () => Navigator.pop(context),
+                                onPressed: () => Navigator.of(context,rootNavigator:true).pop(),
                             ), 
                           ],
                         )

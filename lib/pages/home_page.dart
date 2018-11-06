@@ -61,8 +61,8 @@ class MyHomePage extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             new Container(
-              padding: EdgeInsets.fromLTRB(38.0,50.0,40.0,30.0),
-                child: new Text('FINEDUBOT',style: new TextStyle(fontSize:38.0, fontFamily:'Nunito',fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,color: Colors.grey[850])),
+              padding: EdgeInsets.fromLTRB(30.0,50.0,40.0,30.0),
+                child: new Text('FINEDUBOT',style: new TextStyle(fontSize:30.0, fontFamily:'Nunito',fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,color: Colors.grey[850])),
             ),
            new ListTile(
              leading: new Icon(Icons.grade),

@@ -65,7 +65,7 @@ class _InvestmentContentState extends State<InvestmentContent> {
                             ),
                             new FlatButton(
                               child:  new Icon(Icons.close),
-                                onPressed: () => Navigator.pop(context),
+                                onPressed: () => Navigator.of(context,rootNavigator:true).pop(),
                             ), 
                           ],
                         )
