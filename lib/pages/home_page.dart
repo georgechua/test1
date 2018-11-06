@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 //pages
 import './riskprofile_page.dart';
 import '../result.dart';
-import '../stockcontent.dart';
+import '../bankcontent.dart';
 import '../financecontent.dart';
 import '../investcontent.dart';
 import '../economicscontent.dart';
@@ -17,6 +17,7 @@ import './logout_page.dart';
 import '../loancalculator.dart';
 import '../questionnaires.dart';
 import '../aboutus.dart';
+import '../carCalc.dart';
 
 class MyHomePage extends StatelessWidget {
 
@@ -104,7 +105,7 @@ class MyHomePage extends StatelessWidget {
              onTap: () {
                Navigator.of(context).pop();
               Navigator.of(context).push(new MaterialPageRoute(
-                builder : (BuildContext context) => new LoanCalc()
+                builder : (BuildContext context) => new CarLoanCalc()
               ));
              },
            ),
@@ -176,14 +177,14 @@ class HomeCard extends StatelessWidget {
                    new Padding(
                        padding: EdgeInsets.only(top:20.0,left:20.0),
                        child: new Row(children: <Widget>[
-                          new Text('STOCK',style: new TextStyle(color: Colors.white,fontFamily:'Nunito',fontSize:40.0,fontStyle:FontStyle.italic, fontWeight: FontWeight.bold),)
+                          new Text('BANKING',style: new TextStyle(color: Colors.white,fontFamily:'Nunito',fontSize:40.0,fontStyle:FontStyle.italic, fontWeight: FontWeight.bold),)
                        ],
                       ),        
                       )
                     ],
               ), 
             ),
-            onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new StockContent())),
+            onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new BankContent())),
           ),
               new GestureDetector(
           child: new Card(

@@ -6,7 +6,7 @@ import './root_page.dart';
 // unused pages
 import './pages/riskprofile_page.dart';
 import './result.dart';
-import './stockcontent.dart';
+import './bankcontent.dart';
 import './financecontent.dart';
 import './investcontent.dart';
 import './economicscontent.dart';

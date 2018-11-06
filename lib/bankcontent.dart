@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class StockContent extends StatefulWidget {
+class BankContent extends StatefulWidget {
   @override
-  _StockContentState createState() => _StockContentState();
+  _BankContentState createState() => _BankContentState();
 }
 
-class _StockContentState extends State<StockContent> {
+class _BankContentState extends State<BankContent> {
 
-CollectionReference cRef = Firestore.instance.collection('Content').document('Stock').collection('stockcontent');
+CollectionReference cRef = Firestore.instance.collection('Content').document('Banking').collection('bankcontent');
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ CollectionReference cRef = Firestore.instance.collection('Content').document('St
       appBar: new AppBar(
         centerTitle: true,
         elevation: 1.0,
-        title: new Text("STOCK 101",style: new TextStyle(fontFamily: 'Nunito',color: Colors.grey[850],fontWeight: FontWeight.bold),),
+        title: new Text("BANKING 101",style: new TextStyle(fontFamily: 'Nunito',color: Colors.grey[850],fontWeight: FontWeight.bold),),
       ),
       //backgroundColor: Colors.black87,
          body:  StreamBuilder<QuerySnapshot>(
@@ -57,12 +57,12 @@ CollectionReference cRef = Firestore.instance.collection('Content').document('St
                       child: new SimpleDialog(
                         
                         title: new Text(document['title'],style: new TextStyle(fontFamily: 'Nunito',color: Colors.grey[850],fontWeight: FontWeight.bold),),
-                          contentPadding: EdgeInsets.symmetric(horizontal:20.0,vertical:10.0),
+                          contentPadding: EdgeInsets.symmetric(horizontal:30.0,vertical:20.0),
                           
                           children: <Widget>[
                             new Container(
                               width: 3000.0,
-                              child: new Text(document['content'],textAlign: TextAlign.justify, style: new TextStyle(fontFamily: 'Nunito',fontSize: 15.0,color: Colors.grey[850]),), 
+                              child: new Text(document['content'],textAlign: TextAlign.justify, style: new TextStyle(fontFamily: 'Nunito',fontSize: 17.0,color: Colors.grey[850]),), 
                             ),
                             new FlatButton(
                               child:  new Icon(Icons.close),

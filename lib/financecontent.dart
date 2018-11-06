@@ -57,12 +57,12 @@ CollectionReference cRef = Firestore.instance.collection('Content').document('Fi
                       child: new SimpleDialog(
                         
                         title: new Text(document['title'],style: new TextStyle(fontFamily: 'Nunito',color: Colors.grey[850],fontWeight: FontWeight.bold),),
-                          contentPadding: EdgeInsets.symmetric(horizontal:20.0,vertical:10.0),
+                          contentPadding: EdgeInsets.symmetric(horizontal:30.0,vertical:20.0),
                           
                           children: <Widget>[
                             new Container(
                               width: 3000.0,
-                              child: new Text(document['content'],textAlign: TextAlign.justify, style: new TextStyle(fontFamily: 'Nunito',fontSize: 15.0,color: Colors.grey[850]),), 
+                              child: new Text(document['content'],textAlign: TextAlign.justify, style: new TextStyle(fontFamily: 'Nunito',fontSize: 17.0,color: Colors.grey[850]),), 
                             ),
                             new FlatButton(
                               child:  new Icon(Icons.close),
