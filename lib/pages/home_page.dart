@@ -13,11 +13,11 @@ import '../economicscontent.dart';
 import '../feedback.dart';
 import '../pages/landing.dart';
 import '../auth.dart';
-import './logout_page.dart';
-import '../loancalculator.dart';
 import '../questionnaires.dart';
 import '../aboutus.dart';
 import '../carCalc.dart';
+import './logout_page.dart';
+import '../calcLanding.dart';
 
 class MyHomePage extends StatelessWidget {
 

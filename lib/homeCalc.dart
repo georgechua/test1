@@ -3,12 +3,12 @@ import 'package:decimal/decimal.dart';
 import 'dart:math';
 
 
-class LoanCalc extends StatefulWidget {
+class HomeLoanCalc extends StatefulWidget {
   @override
-  _LoanCalcState createState() => _LoanCalcState();
+  _HomeLoanCalcState createState() => _HomeLoanCalcState();
 }
 
-class _LoanCalcState extends State<LoanCalc> {
+class _HomeLoanCalcState extends State<HomeLoanCalc> {
   double nRate = 0.0,nPrice = 0.0, nPrincipal = 0.0, nDownPayment =0.0, nTerm = 0.0,nMonthly = 0.0,nInterest = 0.0, 
   nInterestBreakdown = 0.0,
   nPrincipalBreakdown =0.0,
