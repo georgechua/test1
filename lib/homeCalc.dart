@@ -41,13 +41,13 @@ class _HomeLoanCalcState extends State<HomeLoanCalc> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        centerTitle: true,
-        elevation: 1.0,
-        title: new Text('Home Loan Calculator',style: new TextStyle(fontFamily: 'Nunito',fontWeight: FontWeight.bold,color: Colors.grey[850]),),
-      ),
-      body: new Container(
+    return new Material(
+    //  appBar: new AppBar(
+      //  centerTitle: true,
+        //elevation: 1.0,
+        //title: new Text('Home Loan Calculator',style: new TextStyle(fontFamily: 'Nunito',fontWeight: FontWeight.bold,color: Colors.grey[850]),),
+      
+      child: new Container(
           padding: const EdgeInsets.fromLTRB(20.0,10.0,20.0,0.0),
           child: new ListView(
             children: <Widget>[

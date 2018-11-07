@@ -105,7 +105,7 @@ class MyHomePage extends StatelessWidget {
              onTap: () {
                Navigator.of(context).pop();
               Navigator.of(context).push(new MaterialPageRoute(
-                builder : (BuildContext context) => new CarLoanCalc()
+                builder : (BuildContext context) => new CalcLanding()
               ));
              },
            ),
