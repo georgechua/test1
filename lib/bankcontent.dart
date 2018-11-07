@@ -8,7 +8,10 @@ class BankContent extends StatefulWidget {
 
 class _BankContentState extends State<BankContent> {
 
+@override
 CollectionReference cRef = Firestore.instance.collection('Content').document('Banking').collection('bankcontent');
+  String getTitle = '';
+  String getContent ='';
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,6 @@ CollectionReference cRef = Firestore.instance.collection('Content').document('Ba
         elevation: 1.0,
         title: new Text("BANKING 101",style: new TextStyle(fontFamily: 'Nunito',color: Colors.grey[850],fontWeight: FontWeight.bold),),
       ),
-      //backgroundColor: Colors.black87,
          body:  StreamBuilder<QuerySnapshot>(
             stream: cRef.snapshots(),
             builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -27,30 +29,44 @@ CollectionReference cRef = Firestore.instance.collection('Content').document('Ba
               switch (snapshot.connectionState) {
                 case ConnectionState.waiting: return new Text('Loading...');
                 default:
+                
                   return new ListView(
-                    children: snapshot.data.documents.map((DocumentSnapshot document) {
+                    children: snapshot.data.documents.map((DocumentSnapshot document)
+                     {
                    return new GestureDetector(
+                     
                     child: new Card(
+                      
                         color: Colors.red[900],
                         margin: EdgeInsets.symmetric(horizontal: 30.0,vertical: 15.0),
                         elevation: 10.0,
                      child: new Column(
                     //mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
+                      
                       new Container(
                         padding: new EdgeInsets.all(15.0),
                         child: new Column(
+                           
                           children: <Widget>[
-                              new ListTile(   
+                  
+                              new ListTile( 
+                                  
                               title: new Text(document['title'], style: new TextStyle(fontSize:30.0, fontFamily: 'Nunito', fontWeight: FontWeight.bold,color: Colors.grey[900]),),
-                              subtitle: new Text(document['desc'],textAlign: TextAlign.justify, style: new TextStyle(fontSize:18.0, fontFamily: 'Nunito', fontWeight: FontWeight.normal,color: Colors.pink[50]),),),
+                              subtitle: new Text(document['desc'],textAlign: TextAlign.justify, style: new TextStyle(fontSize:18.0, fontFamily: 'Nunito', fontWeight: FontWeight.normal,color: Colors.pink[50]),),
+                              
+                              ),
+                              
                         ],
-                      )
+                         
+                      ),
+                      
                      ),
                     ],  
                   )
+                  
                 ),
-                onTap: (){
+                onTap: () {
                  showDialog(
                       barrierDismissible: false,
                       context:context,
@@ -71,12 +87,12 @@ CollectionReference cRef = Firestore.instance.collection('Content').document('Ba
                           ],
                         )
                       );
-                }
-                );
+                } 
+              );
             }).toList(),
           );
-        }
-        
+          
+        } 
       },
     ),
     );

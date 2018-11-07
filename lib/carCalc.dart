@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:decimal/decimal.dart';
 import 'dart:math';
 
+import './calcLanding.dart';
+
 
 class CarLoanCalc extends StatefulWidget {
   @override
@@ -21,8 +23,7 @@ class _CarLoanCalcState extends State<CarLoanCalc> {
 
   void calcLoan() {
     setState(() {
-      
-     
+
       nPrice  = double.parse(iPrice.text); // total loan amount
       nDownPayment = double.parse(iDownPayment.text);
       nTerm       = double.parse(iTerm.text);
@@ -34,7 +35,7 @@ class _CarLoanCalcState extends State<CarLoanCalc> {
       nInterest = nRate*nPrincipal;
       nTotal_payment = nInterest + nPrincipal;
       nMonthly = (nTotal_payment)/(nTerm*12.0);
-   
+    
     });
  
   }
@@ -43,9 +44,9 @@ class _CarLoanCalcState extends State<CarLoanCalc> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        centerTitle: true,
+        title: new Text('Car Loan Calculator',style: new TextStyle(fontFamily: 'Nunito',color: Colors.grey[850],fontWeight: FontWeight.bold),),
         elevation: 1.0,
-        title: new Text('Car Loan Calculator',style: new TextStyle(fontFamily: 'Nunito',fontWeight: FontWeight.bold,color: Colors.grey[850]),),
+        centerTitle: true,
       ),
       body: new Container(
           padding: const EdgeInsets.fromLTRB(20.0,10.0,20.0,0.0),

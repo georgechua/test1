@@ -13,7 +13,7 @@ class _QuestionnairesState extends State<Questionnaires> {
       appBar: new AppBar(
         elevation: 10.0,
         centerTitle: true,
-        title: new Text('Questionnaires',style: new TextStyle(fontFamily: 'Nunito',color: Colors.grey[850],fontWeight: FontWeight.bold) ,),
+        title: new Text('Survey',style: new TextStyle(fontFamily: 'Nunito',color: Colors.grey[850],fontWeight: FontWeight.bold) ,),
       ),
       url: "https://docs.google.com/forms/d/1jf7ylad-qu_26AzAA7ndClfXWK0ipuyI5W7SDVzDu1Q",
       withZoom: true,

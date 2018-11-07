@@ -3,6 +3,5 @@ class Question{
  bool answer;
 
  Question(this.question, this.answer);
-
-
+ 
  }

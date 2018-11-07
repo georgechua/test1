@@ -16,8 +16,6 @@ class QuizPageState extends State <QuizPage>{
 
   Question currentQuestion;
   Quiz quiz = new Quiz([
-    //new Question("Is 1+1 = 2?", true),
-    //new Question("Is 2+2 = 5?", false),
     new Question("Financial modelling is a quantitative analysis commonly used for either asset pricing or general corporate finance.", true),
     new Question("Cash flow statement a.k.a cash flow is a financial statement that shows how changes in balance sheet accounts and income affect cash and cash equivalents, and breaks the analysis down to operating, investing and financing activities. Essentially, the cash flow statement is concerned with the flow of cash in and out of the business.", true),
     new Question("Is it possible for a company to have positive cash flow but still be in serious financial trouble?", true),
@@ -53,7 +51,9 @@ class QuizPageState extends State <QuizPage>{
 
   @override
   Widget build(BuildContext context) {
-    return new Stack(
+    return new WillPopScope(
+      onWillPop: () async => false,
+    child: new Stack(
       fit: StackFit.expand,
       children: <Widget>[
         new Column( 
@@ -82,6 +82,7 @@ class QuizPageState extends State <QuizPage>{
           }
         ) : new Container()
       ],
+    ),
     );
   }
 }

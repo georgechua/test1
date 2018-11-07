@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 //pages
-import './riskprofile_page.dart';
 import '../result.dart';
 import '../bankcontent.dart';
 import '../financecontent.dart';
@@ -15,9 +14,8 @@ import '../pages/landing.dart';
 import '../auth.dart';
 import '../questionnaires.dart';
 import '../aboutus.dart';
-import '../carCalc.dart';
-import './logout_page.dart';
 import '../calcLanding.dart';
+import '../riskprofile.dart';
 
 class MyHomePage extends StatelessWidget {
 
@@ -101,18 +99,19 @@ class MyHomePage extends StatelessWidget {
            new ListTile(
              leading: new Icon(Icons.apps),
              contentPadding: new EdgeInsets.symmetric(horizontal: 40.0),
-             title: new Text('Loan Calculator',style: new TextStyle(fontFamily: 'Nunito', fontSize: 20.0, color: Colors.grey[850]),),
+             title: new Text('Loan Calculators',style: new TextStyle(fontFamily: 'Nunito', fontSize: 20.0, color: Colors.grey[850]),),
              onTap: () {
-               Navigator.of(context).pop();
+              Navigator.of(context).pop();
               Navigator.of(context).push(new MaterialPageRoute(
                 builder : (BuildContext context) => new CalcLanding()
+                
               ));
              },
            ),
            new ListTile(
              leading: new Icon(Icons.note_add),
              contentPadding: new EdgeInsets.symmetric(horizontal: 40.0),
-             title: new Text('Questionnaires',style: new TextStyle(fontFamily: 'Nunito', fontSize: 20.0, color: Colors.grey[850]),),
+             title: new Text('Survey',style: new TextStyle(fontFamily: 'Nunito', fontSize: 20.0, color: Colors.grey[850]),),
              onTap: () {
                Navigator.of(context).pop();
               Navigator.of(context).push(new MaterialPageRoute(

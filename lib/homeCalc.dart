@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:decimal/decimal.dart';
 import 'dart:math';
+import './calcLanding.dart';
 
 
 class HomeLoanCalc extends StatefulWidget {
@@ -33,21 +34,16 @@ class _HomeLoanCalcState extends State<HomeLoanCalc> {
       nInterest = nTotal_payment - nPrincipal;
       nInterestBreakdown = (nInterest/nTotal_payment)*100;
       nPrincipalBreakdown = 100.0 - nInterestBreakdown;
-
-      
     });
- 
   }
 
   @override
   Widget build(BuildContext context) {
-    return new Material(
-    //  appBar: new AppBar(
-      //  centerTitle: true,
-        //elevation: 1.0,
-        //title: new Text('Home Loan Calculator',style: new TextStyle(fontFamily: 'Nunito',fontWeight: FontWeight.bold,color: Colors.grey[850]),),
-      
-      child: new Container(
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('Home Loan Calculator',style: new TextStyle(fontFamily: 'Nunito',color: Colors.grey[850],fontWeight: FontWeight.bold),),
+      ),
+      body: new Container(
           padding: const EdgeInsets.fromLTRB(20.0,10.0,20.0,0.0),
           child: new ListView(
             children: <Widget>[
@@ -91,10 +87,8 @@ class _HomeLoanCalcState extends State<HomeLoanCalc> {
               elevation: 5.0,
               backgroundColor: Colors.orange[800],
               child: Icon(Icons.arrow_forward,size: 30.0,),
-              
               onPressed: calcLoan
               ),
-              
               new Padding(padding: EdgeInsets.only(bottom: 20.0),),
                new Row(children: <Widget>[
                   new Text('Monthly Repayment: RM',style: new TextStyle(fontFamily:'Nunito',fontSize:18.0,color:Colors.blue[800]),), 

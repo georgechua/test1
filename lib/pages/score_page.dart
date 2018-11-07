@@ -43,7 +43,9 @@ class _ScorePageState extends State <ScorePage>{
 
   @override
   Widget build(BuildContext context){
-    return new Material(
+    return new WillPopScope(
+      onWillPop: () async => false,
+    child: new Material(
       color: Colors.orange[800],
       child: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -66,10 +68,10 @@ class _ScorePageState extends State <ScorePage>{
         }
       },
     ), 
-    
-        ],
+   ],
 
       )
+    )
     );
 
   }
