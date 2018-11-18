@@ -1,40 +1,36 @@
 import 'package:flutter/material.dart';
 import './pages/home_page.dart';
 
-class RTQuiz {
+class FLQuiz {
   var questions = [
-      //Total 10 Questions
-      "How long do you intend to invest for?",
-      "Your main purpose for investment is to:",
-      "Which of these has the greatest priority for you?",
-      "What are the chances that your timeframe will change?",
-      "I would be prepared to have my money lose some value in the short term to achieve higher rates of return in the long term.",
-      "I would prefer to have a lower, known fixed rate of return rather than any short term loss of money.",
-      "I would want greater returns than a bank deposit account can offer.",
-      "I would not invest in shares as the returns are too uncertain.",
-      "I would be happy to invest in new startup companies.",
-      "I would be happy to invest in the shares of overseas companies."
+      //Total 6 Questions
+      "Imagine that the interest rate on your savings account was 1% per year and inflation was 2% per year. After 1 year, with the money in this account, you would be able to buy more than today.",
+      "Suppose you need to borrow 100 US dollars. Which is the lower amount to pay back?",
+      "Suppose you put money in the bank for two years and the bank agrees to add 15 percent per year to your account. Will the bank add more money to your account the second year than it did the first year, or will it add the same amount of money both years?",
+      "Suppose you had 100 US dollars in a savings account and the bank adds 10 percent per year to the account. How much money would you have in the account after five years if you did not remove any money from the account?",
+      "Suppose over the next 10 years the prices of the things you buy double. If your income also doubles, will you be able to buy less than you can buy today, the same as you can buy today, or more than you can buy today?",
+      "Suppose you have some money. Is it safer to put your money into one business or investment, or to put your money into multiple businesses or investments?",
   ];
 
   var choices = [
-      //10 Choices
-      ["A. Less than 5 years","B. 5 - 10 years","C. 10 - 20 years","D. 20 & Above years"], //1
-      ["A. Produce maximum capital growth for your retirement","B. Provide income and ensure little risk of loss","C. Provide some income but also growth","D. To gain interest and take no risk at all"],
-      ["A. Generating investment income to live on today or in the next two years","B. Buying a new home","C. Providing funds for your childrens' education","D. Accumulating funds for retirement"],
-      ["A. Highly likely - I need flexibility","B. Possibly - I could change my mind","C. Probably not - I am sure of my goals","D. None - it's cast in stone"],
-      ["A. Strongly disagree","B. Disagree","C. Agree","D. Strongly agree"],
-      ["A. Strongly disagree","B. Disagree","C. Agree","D. Strongly agree"],
-      ["A. Strongly agree","B. Agree","C. Disagree","D. Strongly disagree"],
-      ["A. Strongly disagree","B. Disagree","C. Agree","D. Strongly agree"],
-      ["A. Strongly agree","B. Agree","C. Disagree","D. Strongly disagree"],
-      ["A. Strongly agree","B. Agree","C. Disagree","D. Strongly disagree"], 
+      //6 Choices
+      ["A. True","B. False","C. Dont't know","D. Refuse to answer"], //1
+      ["A. 105 US Dollars","B. 100 US Dollars plus 3%","C. Don't know","D. Refuse to answer"],
+      ["A. More","B. The Same","C. Don't know","D. Refuse to answer"],
+      ["A. More than 150 Dollars","B. Exactly 150 Dollars","C. Don't know","D. Don't know"],
+      ["A. Less","B. The Same","C. More","D. Don't know"],
+      ["A. One business or Investment","B. Multiple businesses and investments","C. Don't know","D. Refuse to answer"],
+
+
+ 
+ 
    
   ];
 
 }
 
 var questionNumber = 0;
-var quiz = RTQuiz();
+var quiz = FLQuiz();
 var aggressive = 0, modaggressive = 0, modconservative = 0, conservative = 0;
 var finalScore = 0;
 var user_type = '';
@@ -43,12 +39,12 @@ String modagg = 'Moderate Aggressive';
 String modconserv = 'Moderate Conservative';
 String conserv = 'Conservative';
 
-class RiskTolerance extends StatefulWidget {
+class FinancialLiteracy extends StatefulWidget {
   @override
-  _RiskToleranceState createState() => _RiskToleranceState();
+  _FinancialLiteracyState createState() => _FinancialLiteracyState();
 }
 
-class _RiskToleranceState extends State<RiskTolerance> {
+class _FinancialLiteracyState extends State<FinancialLiteracy> {
   @override
   Widget build(BuildContext context) {
     return new WillPopScope(

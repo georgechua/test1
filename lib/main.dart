@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 //pages
 import './auth.dart';
 import './root_page.dart';
+import './financeliteracy.dart';
 
 void main() => runApp(new MyApp());
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       ),
      
      home: new RootPage(auth: new Auth()),
-     //home: new Calc(),
+     //home: new FinancialLiteracy()
      //home: new StockContent()
     );
   }

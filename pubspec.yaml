@@ -71,7 +71,6 @@ flutter:
    - images/card4.jpg
    - images/george.png
    - images/jared.png
-  #  - images/a_dot_ham.jpegR
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

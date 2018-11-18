@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './risktolerance.dart';
+import './financeliteracy.dart';
 
 
 class RiskProfile extends StatelessWidget {
