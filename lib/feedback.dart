@@ -4,6 +4,8 @@ import 'dart:async';
 
 
 class FeedbackForm extends StatefulWidget {
+  String currentUser;
+  FeedbackForm({Key key, @required this.currentUser}) : super(key:key);
   @override
   _FeedbackFormState createState() => _FeedbackFormState();
 }
@@ -14,9 +16,10 @@ enum DialogAction{
 }
 
 class _FeedbackFormState extends State<FeedbackForm> {
+  
   StreamSubscription<DocumentSnapshot> subscription;
   final nameController = TextEditingController();
-  final emailController = TextEditingController();
+  final emailController = TextEditingController(text: '';
   final commentsController = TextEditingController();
   
   
@@ -27,7 +30,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
             "dateTime": DateTime.now().toUtc(),
             "enquiry_type": selected,
             "name": nameController.text,
-            "email": emailController.text,
+            //"email": emailController.text,
             "comments": commentsController.text,
          });
       }) ;

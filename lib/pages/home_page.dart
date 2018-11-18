@@ -19,10 +19,10 @@ import '../riskprofile.dart';
 
 class MyHomePage extends StatelessWidget {
 
-  MyHomePage({this.auth, this.onSignedOut,this.user,this.email});
+  MyHomePage({this.auth, this.onSignedOut,this.cuser,this.email});
   final BaseAuth auth;
   final VoidCallback onSignedOut;
-  final FirebaseUser user;
+  final String cuser;
   final String email;
 
  void _signOut() async{
@@ -60,9 +60,14 @@ class MyHomePage extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             new Container(
-              padding: EdgeInsets.fromLTRB(30.0,50.0,40.0,30.0),
+              padding: EdgeInsets.fromLTRB(30.0,50.0,40.0,10.0),
                 child: new Text('FINEDUBOT',style: new TextStyle(fontSize:30.0, fontFamily:'Nunito',fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,color: Colors.grey[850])),
             ),
+            new Container(
+              padding: EdgeInsets.fromLTRB(32.0,0.0,40.0,40.0),
+                child: new Text("$cuser",style: new TextStyle(fontSize:18.0, fontFamily:'Nunito',fontWeight: FontWeight.bold,fontStyle: FontStyle.normal,color: Colors.grey[850])),
+            ),
+            
            new ListTile(
              leading: new Icon(Icons.grade),
              contentPadding: new EdgeInsets.symmetric(horizontal: 40.0),
@@ -129,7 +134,7 @@ class MyHomePage extends StatelessWidget {
              onTap: () {
                Navigator.of(context).pop();
               Navigator.of(context).push(new MaterialPageRoute(
-                builder : (BuildContext context) => new FeedbackForm()
+                builder : (BuildContext context) => new FeedbackForm(currentUser: cuser)
               ));
              },
            ),

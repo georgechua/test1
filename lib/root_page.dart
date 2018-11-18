@@ -6,8 +6,10 @@ import './pages/logout_page.dart';
 
 
 class RootPage extends StatefulWidget {
-  RootPage({this.auth});
+  RootPage({this.auth,});
   final BaseAuth auth;
+  
+  
 
   @override
   _RootPageState createState() => _RootPageState();
@@ -20,7 +22,7 @@ enum AuthStatus {
 }
 
 class _RootPageState extends State<RootPage> {
-
+  String currentUser = '';
   AuthStatus authStatus = AuthStatus.notSignedIn;
 
   initState() {
@@ -28,19 +30,27 @@ class _RootPageState extends State<RootPage> {
     widget.auth.currentUser().then((userId) {
        setState(() {
           authStatus = userId == null ? AuthStatus.notSignedIn : AuthStatus.signedIn;
+          currentUser = userId;
       });
     });
   }
 
   void _signedIn(){
-    setState(() {
+    String currentUser = '';
+    widget.auth.currentUser().then((userId){
+        setState(() {
           authStatus = AuthStatus.signedIn;
+          currentUser = userId;
+          
         });
+    });
+    
   }
 
   void _signedOut(){
     setState(() {
           authStatus = AuthStatus.notSignedIn;
+          currentUser = '';
         });
   }
 
@@ -49,12 +59,14 @@ class _RootPageState extends State<RootPage> {
     switch (authStatus) {
       case AuthStatus.notSignedIn:
         return new LoginPage(
+         
           auth: widget.auth,
           onSignedIn: _signedIn,
         );
         
       case AuthStatus.signedIn:
         return new MyHomePage(
+          cuser: currentUser,
           auth: widget.auth,
           onSignedOut: _signedOut,
         );

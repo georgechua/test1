@@ -39,7 +39,7 @@ class CorrectWrongOverlayState extends State<CorrectWrongOverlay> with SingleTic
   @override
   Widget build(BuildContext context){
     return new Material(
-      color: Colors.black54,
+      color: Colors.black87,
       child: new InkWell(
         onTap: () => widget._onTap(),
         child: new Column(
@@ -58,8 +58,13 @@ class CorrectWrongOverlayState extends State<CorrectWrongOverlay> with SingleTic
             new Padding(
               padding: new EdgeInsets.only(bottom: 20.0),
             ),
-            new Text(widget._isCorrect == true ? "Correct!" : "Wrong!", style: new TextStyle(color: Colors.white, fontSize: 30.0),)
+            new Text(widget._isCorrect == true ? "Correct!" : "Wrong!", style: new TextStyle(fontFamily:'Nunito',color: Colors.white, fontSize: 30.0,fontWeight: FontWeight.bold),),
+            new Padding(
+              padding: new EdgeInsets.only(bottom:40.0)
+            ),
+            new Text("Tap to continue",style: new TextStyle(fontFamily:'Nunito',color: Colors.white,fontSize: 25.0))
           ],
+          
         ),
       )
     );

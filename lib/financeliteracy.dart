@@ -17,27 +17,30 @@ class FLQuiz {
       ["A. True","B. False","C. Dont't know","D. Refuse to answer"], //1
       ["A. 105 US Dollars","B. 100 US Dollars plus 3%","C. Don't know","D. Refuse to answer"],
       ["A. More","B. The Same","C. Don't know","D. Refuse to answer"],
-      ["A. More than 150 Dollars","B. Exactly 150 Dollars","C. Don't know","D. Don't know"],
+      ["A. More than 150 Dollars","B. Exactly 150 Dollars","C. Don't know","D. Refuse to answer"],
       ["A. Less","B. The Same","C. More","D. Don't know"],
       ["A. One business or Investment","B. Multiple businesses and investments","C. Don't know","D. Refuse to answer"],
-
-
- 
- 
    
+  ];
+
+  var correctAnswer = [
+      "A. True",
+      "B. 100 US Dollars plus 3%",
+      "A. More",
+      "A. More than 150 Dollars",
+      "B. The Same",
+      "B. Multiple businesses and investments"
+
   ];
 
 }
 
 var questionNumber = 0;
 var quiz = FLQuiz();
-var aggressive = 0, modaggressive = 0, modconservative = 0, conservative = 0;
 var finalScore = 0;
-var user_type = '';
-String agg = 'Aggressive';
-String modagg = 'Moderate Aggressive';
-String modconserv = 'Moderate Conservative';
-String conserv = 'Conservative';
+String advisor = '';
+
+
 
 class FinancialLiteracy extends StatefulWidget {
   @override
@@ -76,7 +79,7 @@ class _FinancialLiteracyState extends State<FinancialLiteracy> {
                                   style: new TextStyle(color: Colors.white,fontSize:18.0,fontWeight: FontWeight.bold, fontFamily:'Nunito'),),
                                 ), 
                             new Padding(
-                              padding: new EdgeInsets.all(30.0),
+                              padding: new EdgeInsets.only(left:20.0,right:10.0,bottom:15.0),
                               child: new Text(quiz.questions[questionNumber],style:new TextStyle(color: Colors.white,fontSize:22.0,fontWeight: FontWeight.bold, fontFamily:'Nunito'),),),
                            
                         ],
@@ -93,11 +96,9 @@ class _FinancialLiteracyState extends State<FinancialLiteracy> {
                           child: new MaterialButton(
                             color: Colors.green[700],
                             onPressed: (){
-                              if(quiz.choices[questionNumber][0] == quiz.choices[questionNumber][0]){
-                                //finalScore++;
-                                aggressive++;
-                                debugPrint("Aggressive: $aggressive");
-                               
+                              if(quiz.choices[questionNumber][0] == quiz.correctAnswer[questionNumber]){
+                                finalScore++;
+                                 debugPrint("Correct");
                               }
                               updateQuestion();
                             },
@@ -113,10 +114,9 @@ class _FinancialLiteracyState extends State<FinancialLiteracy> {
                         child: new MaterialButton(
                           color: Colors.green[700],
                             onPressed: (){
-                                if(quiz.choices[questionNumber][1] == quiz.choices[questionNumber][1]){
-                                  //finalScore++;
-                                  modaggressive++;
-                                  debugPrint("Moderate Aggressive: $modaggressive");
+                                if(quiz.choices[questionNumber][1] == quiz.correctAnswer[questionNumber]){
+                                  finalScore++;
+                                  debugPrint("Correct");
                                 }
                                 updateQuestion();
                                  },
@@ -132,10 +132,9 @@ class _FinancialLiteracyState extends State<FinancialLiteracy> {
                           child: new MaterialButton(
                             color: Colors.green[700],
                           onPressed: (){
-                            if(quiz.choices[questionNumber][2] == quiz.choices[questionNumber][2]){
-                             // finalScore++;
-                              modconservative++;
-                              debugPrint("Moderate Conservative: $modconservative");
+                            if(quiz.choices[questionNumber][2] == quiz.correctAnswer[questionNumber]){
+                             finalScore++;
+                              debugPrint("Correct");
                             }
                             updateQuestion();
                           },
@@ -151,10 +150,9 @@ class _FinancialLiteracyState extends State<FinancialLiteracy> {
                         child: new MaterialButton(
                           color: Colors.green[700],
                           onPressed: (){
-                          if(quiz.choices[questionNumber][3] == quiz.choices[questionNumber][3]){
-                           // finalScore++;
-                            conservative++;
-                             debugPrint("Conservative: $conservative");
+                          if(quiz.choices[questionNumber][3] == quiz.correctAnswer[questionNumber]){
+                           finalScore++;
+                            debugPrint("Correct");
                           }
                           updateQuestion();
                         },
@@ -173,34 +171,48 @@ class _FinancialLiteracyState extends State<FinancialLiteracy> {
   }
 
 void updateQuestion(){
+
     setState(() {
         if (questionNumber == quiz.questions.length - 1){
-          if(aggressive > modaggressive){
-            if(aggressive > modconservative)
-                  user_type = (aggressive > conservative) ? agg : conserv;
-            else
-                  user_type = (modaggressive > conservative) ? modconserv : conserv;  
-         }else if(modaggressive > modconservative){
-              user_type = (modaggressive > conservative) ? modagg : conserv;
-         }else
-              user_type = (modconservative > conservative) ? modconserv : conserv;
+          if(finalScore / questionNumber < 0.5){
+            if(finalScore / questionNumber == 0.0){
+                advisor = 'Oops, seems like not enough effort is being work on.';
+            }else{
+              advisor = 'Aww, Your Financial Literacy is weak and need to work harder.';
+            }
+            
+          }else if (finalScore / questionNumber > 0.5) {
+            if(finalScore / questionNumber == 1.0){ 
+              advisor = 'Congratulations, Your Financial Literacy is on point!';
+               
+            }else if(finalScore / questionNumber != 0.5){
+              advisor = 'That was close, try harder next time';
               
-          Navigator.push(context,new MaterialPageRoute(builder: (context) => new Summary(type: user_type)));
-          aggressive = 0;
-          modaggressive = 0;
-          modconservative = 0;
-          conservative = 0;
+
+            }else{
+              advisor = 'Not bad, try harder next time!';
+            }    
+            
+          }
+       
+
+           
+          
+          Navigator.push(context,new MaterialPageRoute(builder: (context) => new Summary(score: finalScore, advice: advisor,)));
+          
 
         }else {
           questionNumber++;
         }
     });
+
   }
 }
 
 class Summary extends StatelessWidget {
-  final String type;
-  Summary({Key key, @required this.type}) : super(key:key);
+  final int score;
+  final String advice;
+  Summary({Key key, @required this.score, this.advice}) : super(key:key);
   
   @override
   Widget build(BuildContext context){
@@ -211,21 +223,25 @@ class Summary extends StatelessWidget {
               child: new Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    
-                     new Text('Your Risk Tolerance level is:',style: new TextStyle(color: Colors.black,fontFamily: 'Nunito',fontSize: 20.0),),
+                    new Container(
+                      
+                      margin: EdgeInsets.symmetric(horizontal:50.0),
+                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      child: new Text('$advisor',style: new TextStyle(color: Colors.black,fontFamily: 'Nunito',fontSize: 30.0),),
+                    ),
+                     
 
                     new Container(
                       
                       margin: EdgeInsets.only(top:40.0,bottom:40.0),
-                      
                       decoration: new BoxDecoration(
                         
                          border: new Border.all(color: Colors.black, width: 5.0)
                         ),
                       
                       padding: new EdgeInsets.symmetric(horizontal:20.0,vertical: 10.0),
-                      child: new Text('$user_type',style: new TextStyle(color: Colors.black,fontFamily: 'Nunito',fontSize: 30.0,fontStyle: FontStyle.italic,fontWeight: FontWeight.bold),),
-                   
+                      child: new Text('$finalScore / ${quiz.questions.length}',style: new TextStyle(color: Colors.black,fontFamily: 'Nunito',fontSize: 30.0,fontStyle: FontStyle.italic,fontWeight: FontWeight.bold),),
+                
                 ),
                    
                     

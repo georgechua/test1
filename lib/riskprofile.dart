@@ -21,7 +21,7 @@ class RiskProfile extends StatelessWidget {
             child: new InkWell(
               onTap: () {
               Navigator.of(context).push(new MaterialPageRoute(
-                builder : (BuildContext context) => null
+                builder : (BuildContext context) => FinancialLiteracy()
               ));
              },
               child: new Center(

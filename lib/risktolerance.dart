@@ -190,10 +190,7 @@ void updateQuestion(){
               user_type = (modconservative > conservative) ? modconserv : conserv;
               
           Navigator.push(context,new MaterialPageRoute(builder: (context) => new Summary(type: user_type)));
-          aggressive = 0;
-          modaggressive = 0;
-          modconservative = 0;
-          conservative = 0;
+          
 
         }else {
           questionNumber++;
@@ -241,7 +238,11 @@ class Summary extends StatelessWidget {
               Navigator.pop(context);
               Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new MyHomePage()));
               questionNumber = 0;
-              finalScore = 0;
+              aggressive = 0;
+              modaggressive = 0;
+              modconservative = 0;
+              conservative = 0;
+                  
             
               },
             

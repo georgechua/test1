@@ -9,6 +9,7 @@ class LoginPage extends StatefulWidget {
   LoginPage({this.auth,this.onSignedIn});
   final BaseAuth auth;
   final VoidCallback onSignedIn;
+ 
 
   @override
   State createState() => _LoginPageState();
@@ -20,7 +21,7 @@ enum FormType {
 }
 
 class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixin {
- 
+  
   //Form validate var
   final formKey = new GlobalKey<FormState>();
   String _email;
@@ -44,9 +45,12 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
             if(_formType == FormType.login) {
               String userId = await widget.auth.signInWithEmailAndPassword(_email, _password); 
               print('Signed In : $userId');
+              
+              
             }else {
               String userId = await widget.auth.createUserWithEmailAndPassword(_email, _password);
               print('Registered User : $userId');
+              
             }
             widget.onSignedIn();
           }
