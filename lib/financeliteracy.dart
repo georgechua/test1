@@ -171,35 +171,35 @@ class _FinancialLiteracyState extends State<FinancialLiteracy> {
   }
 
 void updateQuestion(){
-
+ double getScore = 0;
+ getScore = finalScore / quiz.questions.length;
     setState(() {
         if (questionNumber == quiz.questions.length - 1){
-          if(finalScore / questionNumber < 0.5){
-            if(finalScore / questionNumber == 0.0){
+          if(getScore < 0.5){
+            if(getScore == 0.0){
                 advisor = 'Oops, seems like not enough effort is being work on.';
-            }else{
-              advisor = 'Aww, Your Financial Literacy is weak and need to work harder.';
+                debugPrint('$getScore');
             }
             
-          }else if (finalScore / questionNumber > 0.5) {
-            if(finalScore / questionNumber == 1.0){ 
+          }else if (getScore >= 0.5) {
+            if(getScore == 1.0){ 
               advisor = 'Congratulations, Your Financial Literacy is on point!';
+              debugPrint('$getScore');
                
-            }else if(finalScore / questionNumber != 0.5){
+            }else if(getScore == 0.5){
               advisor = 'That was close, try harder next time';
+              debugPrint('$getScore');
               
-
             }else{
-              advisor = 'Not bad, try harder next time!';
-            }    
+              advisor = 'Not bad, keep up the good work';
+              debugPrint('$getScore');
+              
+            }
             
           }
-       
 
-           
-          
           Navigator.push(context,new MaterialPageRoute(builder: (context) => new Summary(score: finalScore, advice: advisor,)));
-          
+          getScore = 0;
 
         }else {
           questionNumber++;

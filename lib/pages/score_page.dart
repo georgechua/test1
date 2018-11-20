@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
-import '../loginpage.dart';
-import 'dart:async';
 import '../main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../auth.dart';
+
 
 class ScorePage extends StatefulWidget{
   final int score;
@@ -39,7 +37,7 @@ class _ScorePageState extends State <ScorePage>{
       
   }    
 
-  String userEmail = null;
+  String userEmail;
 
   @override
   Widget build(BuildContext context){

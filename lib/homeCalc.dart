@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:decimal/decimal.dart';
 import 'dart:math';
-import './calcLanding.dart';
 
 
 class HomeLoanCalc extends StatefulWidget {

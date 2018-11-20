@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';  
-import 'dart:async';
 
 
 class FeedbackForm extends StatefulWidget {
-  String currentUser;
-  FeedbackForm({Key key, @required this.currentUser}) : super(key:key);
+
+  
   @override
   _FeedbackFormState createState() => _FeedbackFormState();
 }
@@ -16,10 +15,10 @@ enum DialogAction{
 }
 
 class _FeedbackFormState extends State<FeedbackForm> {
-  
-  StreamSubscription<DocumentSnapshot> subscription;
+
+  //StreamSubscription<DocumentSnapshot> subscription;
   final nameController = TextEditingController();
-  final emailController = TextEditingController(text: '';
+  final emailController = TextEditingController();
   final commentsController = TextEditingController();
   
   
@@ -35,6 +34,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
          });
       }) ;
       Navigator.pop(context);
+      dispose();
   }
 
   void dispose() {
@@ -47,7 +47,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
 
 
   List<DropdownMenuItem<String>> listDrop = [];
-  String selected = null;
+  String selected;
 
   void loadData() {
     listDrop = []; 
@@ -179,4 +179,5 @@ class _FeedbackFormState extends State<FeedbackForm> {
          ),
     );
   }
+
 }

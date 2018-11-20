@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import './loginpage.dart';
 import 'auth.dart';
 import './pages/home_page.dart';
-import './pages/logout_page.dart';
 
 
 class RootPage extends StatefulWidget {
@@ -36,15 +35,9 @@ class _RootPageState extends State<RootPage> {
   }
 
   void _signedIn(){
-    String currentUser = '';
-    widget.auth.currentUser().then((userId){
-        setState(() {
+      setState(() {
           authStatus = AuthStatus.signedIn;
-          currentUser = userId;
-          
         });
-    });
-    
   }
 
   void _signedOut(){
@@ -59,7 +52,6 @@ class _RootPageState extends State<RootPage> {
     switch (authStatus) {
       case AuthStatus.notSignedIn:
         return new LoginPage(
-         
           auth: widget.auth,
           onSignedIn: _signedIn,
         );

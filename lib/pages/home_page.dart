@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 //pages
 import '../result.dart';
@@ -34,7 +32,7 @@ class MyHomePage extends StatelessWidget {
     } 
 }
 
-  String getEmail = null;
+  final String getEmail = '';
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +61,10 @@ class MyHomePage extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(30.0,50.0,40.0,10.0),
                 child: new Text('FINEDUBOT',style: new TextStyle(fontSize:30.0, fontFamily:'Nunito',fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,color: Colors.grey[850])),
             ),
-            new Container(
+          new Container(
               padding: EdgeInsets.fromLTRB(32.0,0.0,40.0,40.0),
                 child: new Text("$cuser",style: new TextStyle(fontSize:18.0, fontFamily:'Nunito',fontWeight: FontWeight.bold,fontStyle: FontStyle.normal,color: Colors.grey[850])),
-            ),
+            ), 
             
            new ListTile(
              leading: new Icon(Icons.grade),
@@ -134,7 +132,7 @@ class MyHomePage extends StatelessWidget {
              onTap: () {
                Navigator.of(context).pop();
               Navigator.of(context).push(new MaterialPageRoute(
-                builder : (BuildContext context) => new FeedbackForm(currentUser: cuser)
+                builder : (BuildContext context) => new FeedbackForm()
               ));
              },
            ),

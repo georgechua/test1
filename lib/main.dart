@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 //pages
 import './auth.dart';
 import './root_page.dart';
-import './financeliteracy.dart';
 
 void main() => runApp(new MyApp());
 
