@@ -180,32 +180,24 @@ void updateQuestion(){
                 advisor = 'Oops, seems like not enough effort is being work on.';
                 debugPrint('$getScore');
             }
-            
           }else if (getScore >= 0.5) {
             if(getScore == 1.0){ 
               advisor = 'Congratulations, Your Financial Literacy is on point!';
               debugPrint('$getScore');
-               
             }else if(getScore == 0.5){
               advisor = 'That was close, try harder next time';
               debugPrint('$getScore');
-              
             }else{
               advisor = 'Not bad, keep up the good work';
               debugPrint('$getScore');
-              
             }
-            
           }
-
           Navigator.push(context,new MaterialPageRoute(builder: (context) => new Summary(score: finalScore, advice: advisor,)));
           getScore = 0;
-
         }else {
           questionNumber++;
         }
     });
-
   }
 }
 
